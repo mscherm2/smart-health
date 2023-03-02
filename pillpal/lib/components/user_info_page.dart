@@ -13,7 +13,6 @@ class UserInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     void doUserLogout() async {
       var response = await currentUser!.logout();
       if (response.success) {
@@ -32,27 +31,65 @@ class UserInfoPage extends StatelessWidget {
       }
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-              child: Text('Hello, ${getUser()}')),
-          SizedBox(
-            height: 16,
-          ),
-          Container(
-            height: 50,
-            child: ElevatedButton(
-              child: const Text('Logout'),
-              onPressed: () => doUserLogout(),
-            ),
-          ),
-        ],
-      ),
+    return Scaffold(
+        body: FutureBuilder<ParseUser?>(
+            future: getUser(),
+            builder: (context, snapshot) {
+              if (snapshot.data?.username != null) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [Container(
+                      height: 75,
+                      width: 300,
+                      decoration: BoxDecoration(
+                          color: Colors.lightGreenAccent,
+                          border: Border.all(
+                            color: Colors.lightGreenAccent,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(20))
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Text("Username: ${snapshot.data?.get('username')}\nEmail: ${snapshot.data?.get('email')}", textAlign: TextAlign.center,)]
+                      )
+                    ),
+                      SizedBox(
+                          height: 16
+                      ),
+                      Container(
+                          height: 75,
+                          width: 300,
+                          decoration: BoxDecoration(
+                              color: Colors.lightGreenAccent,
+                              border: Border.all(
+                                color: Colors.lightGreenAccent,
+                              ),
+                              borderRadius: BorderRadius.all(Radius.circular(20))
+                          ),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [Text("Username: ${snapshot.data?.get('username')}\nEmail: ${snapshot.data?.get('email')}", textAlign: TextAlign.center,)]
+                          )
+                      ),
+                      SizedBox(
+                          height: 16
+                      ),
+                      Container(
+                        height: 50,
+                        child: ElevatedButton(
+                          child: const Text('Logout'),
+                          onPressed: () => doUserLogout(),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              } else {
+                return Text("Hello");
+              }
+            }
+        )
     );
   }
-
 }
