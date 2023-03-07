@@ -97,8 +97,8 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Container(
                   height: 200,
-                  child: Image.network(
-                      'https://blog.back4app.com/wp-content/uploads/2017/11/logo-b4a-1-768x175-1.png'),
+                  child: Image.asset(
+                      'assets/images/curr_logo.png'),
                 ),
                 Center(
                   child: const Text('PillPal',
