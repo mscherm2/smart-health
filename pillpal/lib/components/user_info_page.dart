@@ -5,16 +5,31 @@ import '../main.dart';
 import '../services/user_service.dart';
 
 class UserInfoPage extends StatelessWidget {
-  ParseUser? currentUser;
 
   @override
   Widget build(BuildContext context) {
     void doUserLogout() async {
-      var response = await currentUser!.logout();
-      if (response.success) {
-        Message.showSuccess(
+      try {
+        ParseUser? currentUser = await getUser();
+        var response = await currentUser!.logout();
+        if (response.success) {
+          Message.showSuccess(
+              context: context,
+              message: 'User was successfully logout!',
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                      (Route<dynamic> route) => false,
+                );
+              });
+        } else {
+          Message.showError(context: context, message: response.error!.message);
+        }
+      } catch(e) {
+        Message.showError(
             context: context,
-            message: 'User was successfully logout!',
+            message: 'Logout Error! Please try again later.',
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
@@ -22,8 +37,6 @@ class UserInfoPage extends StatelessWidget {
                     (Route<dynamic> route) => false,
               );
             });
-      } else {
-        Message.showError(context: context, message: response.error!.message);
       }
     }
 
@@ -40,25 +53,7 @@ class UserInfoPage extends StatelessWidget {
                         height: 75
                     ),
                       Container(
-                      height: 75,
-                      width: 300,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: Colors.white,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("Username: ${snapshot.data?[0].get('username')}\nEmail: ${snapshot.data?[0].get('email')}", textAlign: TextAlign.center,)]
-                      )
-                    ),
-                      SizedBox(
-                          height: 25
-                      ),
-                      Expanded(
-                        child: Container(
+                          height: 75,
                           width: 300,
                           decoration: BoxDecoration(
                               color: Colors.white,
@@ -69,8 +64,26 @@ class UserInfoPage extends StatelessWidget {
                           ),
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [Text("Doctor Information:\nName: ${snapshot.data?[1].get('name')}\nEmail: ${snapshot.data?[1].get('email')}\nPhone: ${snapshot.data?[1].get('phone')}\nOther: ${snapshot.data?[1].get('other_info')}", textAlign: TextAlign.center,)]
+                              children: [Text("Username: ${snapshot.data?[0].get('username')}\nEmail: ${snapshot.data?[0].get('email')}", textAlign: TextAlign.center,)]
                           )
+                      ),
+                      SizedBox(
+                          height: 25
+                      ),
+                      Expanded(
+                        child: Container(
+                            width: 300,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: Colors.white,
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(20))
+                            ),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [Text("Doctor Information:\nName: ${snapshot.data?[1].get('name')}\nEmail: ${snapshot.data?[1].get('email')}\nPhone: ${snapshot.data?[1].get('phone')}\nOther: ${snapshot.data?[1].get('other_info')}", textAlign: TextAlign.center,)]
+                            )
                         ),
                       ),
                       SizedBox(
@@ -78,18 +91,18 @@ class UserInfoPage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Container(
-                          width: 300,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(
+                            width: 300,
+                            decoration: BoxDecoration(
                                 color: Colors.white,
-                              ),
-                              borderRadius: BorderRadius.all(Radius.circular(20))
-                          ),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [Text("Pharmacy Information:\nName: ${snapshot.data?[2].get('name')}\n${snapshot.data?[2].get('addr')}\n${snapshot.data?[2].get('city')}, ${snapshot.data?[2].get('state')} ${snapshot.data?[2].get('zip')}\n${snapshot.data?[2].get('phone')}", textAlign: TextAlign.center,)]
-                          )
+                                border: Border.all(
+                                  color: Colors.white,
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(20))
+                            ),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [Text("Pharmacy Information:\nName: ${snapshot.data?[2].get('name')}\n${snapshot.data?[2].get('addr')}\n${snapshot.data?[2].get('city')}, ${snapshot.data?[2].get('state')} ${snapshot.data?[2].get('zip')}\n${snapshot.data?[2].get('phone')}", textAlign: TextAlign.center,)]
+                            )
                         ),
                       ),
                       SizedBox(
