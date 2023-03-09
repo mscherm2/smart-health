@@ -33,9 +33,12 @@ class AboutMedPage extends StatelessWidget {
                       itemCount: snapshot.data?[1].length,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                          height: 100,
+                          height: 140,
                           color: Colors.lightGreen[colorCodes[index % 3]],
-                          child: Center(child: Text('Name: ${snapshot.data?[1][index].get('Name')}\nDescription: ${snapshot.data?[1][index].get('Desc')}\nDays: ${snapshot.data?[1][index].get('Days')}\nTime: ${snapshot.data?[1][index].get('Time')}', textAlign: TextAlign.center,)),
+                          child: Center(child: Text('Name: ${snapshot.data?[1][index].get('Name')}'
+                              '\nDescription: ${snapshot.data?[1][index].get('Desc')}\nDays: ${snapshot.data?[1][index].get('Days')}'
+                              '\nTime: ${snapshot.data?[1][index].get('Time')}\nAmount: ${snapshot.data?[1][index].get('amt')}',
+                            textAlign: TextAlign.center,)),
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) => const Divider(),
@@ -44,7 +47,7 @@ class AboutMedPage extends StatelessWidget {
                 ],
               );
             } else {
-              return Text("Hello");
+              return Text("User not logged in");
             }
           }
 
