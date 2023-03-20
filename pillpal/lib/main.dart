@@ -97,11 +97,11 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Container(
                   height: 200,
-                  child: Image.network(
-                      'https://blog.back4app.com/wp-content/uploads/2017/11/logo-b4a-1-768x175-1.png'),
+                  child: Image.asset(
+                      'assets/images/curr_logo.png'),
                 ),
                 Center(
-                  child: const Text('Flutter on Back4App',
+                  child: const Text('PillPal',
                       style:
                       TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
@@ -340,9 +340,6 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   title: Text('User logged in - Current User'),
-        // ),
         body: FutureBuilder<ParseUser?>(
             future: getUser(),
             builder: (context, snapshot) {
