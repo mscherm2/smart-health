@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,7 @@ import 'components/user_info_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
   const keyApplicationId = 'LpMPZJZ7AXwu5KvzLgMIdZH1C0v5UcUgxuDZfiob';
   const keyClientKey = 'lO4WnUFbxnbwVdC4rCY9m8dKF01uax8rirzQUZh1';
@@ -17,7 +19,14 @@ void main() async {
       clientKey: keyClientKey,
       debug: true);
 
-  runApp(MyApp());
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale('en', 'US'), Locale('es', 'US')],
+      path: 'assets/translations', // <-- change the path of the translation files
+      fallbackLocale: Locale('en', 'US'),
+      child: MyApp()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -42,7 +51,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter - Parse Server',
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      title: 'title'.tr(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -87,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter - Parse Server'),
+          title: const Text('title').tr(),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -101,9 +113,9 @@ class _LoginPageState extends State<LoginPage> {
                       'assets/images/curr_logo.png'),
                 ),
                 Center(
-                  child: const Text('PillPal',
+                  child: const Text('title',
                       style:
-                      TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      TextStyle(fontSize: 18, fontWeight: FontWeight.bold)).tr(),
                 ),
                 SizedBox(
                   height: 16,
@@ -117,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Username'),
+                      labelText: 'username'.tr()),
                 ),
                 SizedBox(
                   height: 8,
@@ -132,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Password'),
+                      labelText: 'password'.tr()),
                 ),
                 SizedBox(
                   height: 16,
@@ -140,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
-                    child: const Text('Login'),
+                    child: const Text('login').tr(),
                     onPressed: isLoggedIn ? null : () => doUserLogin(),
                   ),
                 ),
@@ -150,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
-                    child: const Text('Sign Up'),
+                    child: const Text('signup').tr(),
                     onPressed: () => navigateToSignUp(),
                   ),
                 ),
@@ -160,10 +172,46 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
-                    child: const Text('Reset Password'),
+                    child: const Text('resetpassword').tr(),
                     onPressed: () => navigateToResetPassword(),
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Center(
+                  child: const Text('changelanguage').tr(),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Center(
+                  child: Container(
+                    height: 50,
+                    child: DropdownButton<Locale>(
+                      icon: const Icon(Icons.arrow_downward),
+                      elevation: 16,
+                      style: const TextStyle(color: Colors.deepPurple),
+                      underline: Container(
+                        height: 2,
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      onChanged: (Locale? value) {
+                        context.setLocale(value!);
+                      },
+                      items: [
+                        DropdownMenuItem<Locale>(
+                          value: Locale('en', 'US'),
+                          child: Text('english').tr(),
+                        ),
+                        DropdownMenuItem<Locale>(
+                          value: Locale('es', 'US'),
+                          child: Text('spanish').tr(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -222,7 +270,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter Sign Up'),
+          title: const Text('title').tr(),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -232,20 +280,20 @@ class _SignUpPageState extends State<SignUpPage> {
               children: [
                 Container(
                   height: 200,
-                  child: Image.network(
-                      'https://blog.back4app.com/wp-content/uploads/2017/11/logo-b4a-1-768x175-1.png'),
+                  child: Image.asset(
+                      'assets/images/curr_logo.png'),
                 ),
                 Center(
-                  child: const Text('Flutter on Back4App',
+                  child: const Text('title',
                       style:
-                      TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      TextStyle(fontSize: 18, fontWeight: FontWeight.bold)).tr(),
                 ),
                 SizedBox(
                   height: 16,
                 ),
                 Center(
-                  child: const Text('User registration',
-                      style: TextStyle(fontSize: 16)),
+                  child: const Text('userregistration',
+                      style: TextStyle(fontSize: 16)).tr(),
                 ),
                 SizedBox(
                   height: 16,
@@ -258,7 +306,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Username'),
+                      labelText: 'username'.tr()),
                 ),
                 SizedBox(
                   height: 8,
@@ -271,7 +319,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'E-mail'),
+                      labelText: 'email'.tr()),
                 ),
                 SizedBox(
                   height: 8,
@@ -285,7 +333,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'Password'),
+                      labelText: 'password'.tr()),
                 ),
                 SizedBox(
                   height: 8,
@@ -293,10 +341,46 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
-                    child: const Text('Sign Up'),
+                    child: const Text('signup').tr(),
                     onPressed: () => doUserRegistration(),
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Center(
+                  child: const Text('changelanguage').tr(),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Center(
+                  child: Container(
+                    height: 50,
+                    child: DropdownButton<Locale>(
+                      icon: const Icon(Icons.arrow_downward),
+                      elevation: 16,
+                      style: const TextStyle(color: Colors.deepPurple),
+                      underline: Container(
+                        height: 2,
+                        color: Colors.deepPurpleAccent,
+                      ),
+                      onChanged: (Locale? value) {
+                        context.setLocale(value!);
+                      },
+                      items: [
+                        DropdownMenuItem<Locale>(
+                          value: Locale('en', 'US'),
+                          child: Text('english').tr(),
+                        ),
+                        DropdownMenuItem<Locale>(
+                          value: Locale('es', 'US'),
+                          child: Text('spanish').tr(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -315,7 +399,7 @@ class _SignUpPageState extends State<SignUpPage> {
     if (response.success) {
       Message.showSuccess(
           context: context,
-          message: 'User was successfully created!',
+          message: 'successful'.tr(),
           onPressed: () async {
             Navigator.pushAndRemoveUntil(
               context,
@@ -356,7 +440,7 @@ class UserPage extends StatelessWidget {
                   return ChangeNotifierProvider(
                     create: (context) => MyAppState(),
                     child: MaterialApp(
-                      title: 'PillPal App',
+                      title: 'title'.tr(),
                       theme: ThemeData(
                         useMaterial3: true,
                         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
@@ -381,7 +465,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Reset Password'),
+          title: Text('resetpassword').tr(),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(8),
@@ -396,7 +480,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
-                    labelText: 'E-mail'),
+                    labelText: 'email'.tr()),
               ),
               SizedBox(
                 height: 8,
@@ -404,7 +488,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               Container(
                 height: 50,
                 child: ElevatedButton(
-                  child: const Text('Reset Password'),
+                  child: const Text('resetpassword').tr(),
                   onPressed: () => doUserResetPassword(),
                 ),
               )
@@ -425,11 +509,11 @@ class Message {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Success!"),
+          title: const Text('success').tr(),
           content: Text(message),
           actions: <Widget>[
             new ElevatedButton(
-              child: const Text("OK"),
+              child: const Text('ok').tr(),
               onPressed: () {
                 Navigator.of(context).pop();
                 if (onPressed != null) {
@@ -451,11 +535,11 @@ class Message {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Error!"),
+          title: const Text('error').tr(),
           content: Text(message),
           actions: <Widget>[
             new ElevatedButton(
-              child: const Text("OK"),
+              child: const Text('ok').tr(),
               onPressed: () {
                 Navigator.of(context).pop();
                 if (onPressed != null) {
@@ -511,7 +595,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = UserInfoPage();
         break;
       default:
-        throw UnimplementedError('no widget for $selectedIndex');
+        throw UnimplementedError('nowidget'.tr(args: [selectedIndex.toString()]));
     }
 
     return LayoutBuilder(
@@ -522,18 +606,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 SafeArea(
                   child: NavigationRail(
                     extended: constraints.maxWidth >= 600,
-                    destinations: const [
+                    destinations: [
                       NavigationRailDestination(
                         icon: Icon(Icons.medication),
-                        label: Text('About Meds'),
+                        label: const Text('aboutmeds').tr(),
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.calendar_month_outlined),
-                        label: Text('Calendar'),
+                        label: const Text('calendar').tr(),
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.person),
-                        label: Text('My Info'),
+                        label: const Text('myinfo').tr(),
                       ),
                     ],
                     selectedIndex: selectedIndex,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../main.dart';
 import '../services/user_service.dart';
 
 class UserInfoPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     void doUserLogout() async {
@@ -15,7 +15,7 @@ class UserInfoPage extends StatelessWidget {
         if (response.success) {
           Message.showSuccess(
               context: context,
-              message: 'User was successfully logout!',
+              message: 'logoutmsg'.tr(),
               onPressed: () {
                 Navigator.pushAndRemoveUntil(
                   context,
@@ -29,7 +29,7 @@ class UserInfoPage extends StatelessWidget {
       } catch(e) {
         Message.showError(
             context: context,
-            message: 'Logout Error! Please try again later.',
+            message: 'logouterror'.tr(),
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
@@ -64,7 +64,8 @@ class UserInfoPage extends StatelessWidget {
                           ),
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [Text("Username: ${snapshot.data?[0].get('username')}\nEmail: ${snapshot.data?[0].get('email')}", textAlign: TextAlign.center,)]
+                              children: [
+                                Text('userinfo', textAlign: TextAlign.center,).tr(args: [snapshot.data?[0].get('username'), snapshot.data?[0].get('email')])]
                           )
                       ),
                       SizedBox(
@@ -82,7 +83,7 @@ class UserInfoPage extends StatelessWidget {
                             ),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text("Doctor Information:\nName: ${snapshot.data?[1].get('name')}\nEmail: ${snapshot.data?[1].get('email')}\nPhone: ${snapshot.data?[1].get('phone')}\nOther: ${snapshot.data?[1].get('other_info')}", textAlign: TextAlign.center,)]
+                                children: [Text('userinfodoctor', textAlign: TextAlign.center,).tr(args: [snapshot.data?[1].get('name'), snapshot.data?[1].get('email'), snapshot.data?[1].get('phone'), snapshot.data?[1].get('other_info')])]
                             )
                         ),
                       ),
@@ -101,18 +102,37 @@ class UserInfoPage extends StatelessWidget {
                             ),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text("Pharmacy Information:\nName: ${snapshot.data?[2].get('name')}\n${snapshot.data?[2].get('addr')}\n${snapshot.data?[2].get('city')}, ${snapshot.data?[2].get('state')} ${snapshot.data?[2].get('zip')}\n${snapshot.data?[2].get('phone')}", textAlign: TextAlign.center,)]
+                                children: [Text('userinfopharmacy', textAlign: TextAlign.center,).tr(args: [snapshot.data?[2].get('name'), snapshot.data?[2].get('addr'), snapshot.data?[2].get('city'), snapshot.data?[2].get('state'), snapshot.data?[2].get('zip'), snapshot.data?[2].get('phone')])]
                             )
                         ),
                       ),
                       SizedBox(
                           height: 25
                       ),
+                      Text('changelanguage').tr(),
                       Container(
                         height: 50,
-                        child: ElevatedButton(
-                          child: const Text('Change Language'),
-                          onPressed: () => getDoctor(),
+                        child: DropdownButton<Locale>(
+                          icon: const Icon(Icons.arrow_downward),
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.deepPurple),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.deepPurpleAccent,
+                          ),
+                          onChanged: (Locale? value) {
+                            context.setLocale(value!);
+                          },
+                          items: [
+                            DropdownMenuItem<Locale>(
+                              value: Locale('en', 'US'),
+                              child: Text('english').tr(),
+                            ),
+                            DropdownMenuItem<Locale>(
+                              value: Locale('es', 'US'),
+                              child: Text('spanish').tr(),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(
@@ -121,7 +141,7 @@ class UserInfoPage extends StatelessWidget {
                       Container(
                         height: 50,
                         child: ElevatedButton(
-                          child: const Text('Logout'),
+                          child: const Text('logout').tr(),
                           onPressed: () => doUserLogout(),
                         ),
                       ),
@@ -132,7 +152,7 @@ class UserInfoPage extends StatelessWidget {
                   ),
                 );
               } else {
-                return Text("Hello");
+                return Text('hello').tr();
               }
             }
         )
