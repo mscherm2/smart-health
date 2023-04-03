@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'cal_utils.dart';
@@ -22,6 +23,7 @@ class _CalendarPageState extends State<CalendarPage> {
         ),
 
         TableCalendar(
+        locale: context.locale.toLanguageTag(),
         firstDay: kFirstDay,
         lastDay: kLastDay,
         focusedDay: _focusedDay,

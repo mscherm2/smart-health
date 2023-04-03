@@ -1,0 +1,33 @@
+{
+  "title": "PillPal",
+  "username": "Username",
+  "password": "Password",
+  "login": "Login",
+  "signup": "Sign Up",
+  "resetpassword": "Reset Password",
+  "userregistration": "User Registration",
+  "email": "E-mail",
+  "successful": "User was successfully created!",
+  "success": "Success!",
+  "ok": "OK",
+  "error": "Error!",
+  "nowidget": "no widget for {}",
+  "aboutmeds": "About Meds",
+  "calendar": "Calendar",
+  "myinfo": "My Info",
+
+  "logoutmsg": "User was successfully logged out!",
+  "logouterror": "Logout Error! Please try again later.",
+  "userinfo": "Username: {}\nEmail: {}",
+  "userinfodoctor": "Doctor Information:\nName: {}\nEmail: {}\nPhone: {}\nOther: {}",
+  "userinfopharmacy": "Pharmacy Information:\nName: {}\n{}\n{}, {} {}\n{}",
+  "changelanguage": "Change Language",
+  "logout": "Logout",
+  "hello": "Hello",
+  "english": "English",
+  "spanish": "Spanish",
+
+  "aboutmymedications": "About My Medications",
+  "aboutmymedsintro": "Hello, {}! Use this page to see your medication details or add a new one!",
+  "medication": "Name: {}\nDescription: {}\nDays: {}\nTime: {}\nAmount: {}"
+}

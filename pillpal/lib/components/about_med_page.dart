@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../services/about_med_service.dart';
 
@@ -20,12 +21,12 @@ class AboutMedPage extends StatelessWidget {
               return Column(
                 children: [
                   AppBar(
-                    title: Text("About My Medications", style: TextStyle(color: Colors.white),),
+                    title: Text('aboutmymedications', style: TextStyle(color: Colors.white),).tr(),
                     centerTitle: true,
                     backgroundColor: Color(0xff020887),
                   ),
                   SizedBox(height: 20),
-                  Text("Hello, ${snapshot.data?[0].get('username')}! Use this page to see your medication details or add a new one!"),
+                  Text('aboutmymedsintro').tr(args: [snapshot.data?[0].get('username')]),
                   SizedBox(height: 20),
                   Expanded(
                     child: ListView.separated(
@@ -35,10 +36,14 @@ class AboutMedPage extends StatelessWidget {
                         return Container(
                           height: 140,
                           color: Colors.lightGreen[colorCodes[index % 3]],
-                          child: Center(child: Text('Name: ${snapshot.data?[1][index].get('Name')}'
-                              '\nDescription: ${snapshot.data?[1][index].get('Desc')}\nDays: ${snapshot.data?[1][index].get('Days')}'
-                              '\nTime: ${snapshot.data?[1][index].get('Time')}\nAmount: ${snapshot.data?[1][index].get('amt')}',
-                            textAlign: TextAlign.center,)),
+                          child: Center(child: Text('medication',
+                            textAlign: TextAlign.center,).tr(args: [
+                              snapshot.data?[1][index].get('Name'),
+                              snapshot.data?[1][index].get('Desc'),
+                              snapshot.data?[1][index].get('Days'),
+                              snapshot.data?[1][index].get('Time'),
+                              snapshot.data?[1][index].get('amt'),
+                          ])),
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) => const Divider(),

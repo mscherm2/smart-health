@@ -1,0 +1,33 @@
+{
+  "title": "PillPal",
+  "username": "Nombre de usuario",
+  "password": "Contraseña",
+  "login": "Acceso",
+  "signup": "Inscribirse",
+  "resetpassword": "Restablecer la contraseña",
+  "userregistration": "Registro de Usuario",
+  "email": "Correo Electrónico",
+  "successful": "User was successfully created!",
+  "success": "¡El usuario fue creado con éxito!",
+  "ok": "DE ACUERDO",
+  "error": "¡Error!",
+  "nowidget": "sin widget para {}",
+  "aboutmeds": "Acerca de los medicamentos",
+  "calendar": "Calendario",
+  "myinfo": "Mi información",
+
+  "logoutmsg": "¡El usuario fue desconectado exitosamente!",
+  "logouterror": "¡Error de cierre de sesión! Por favor, inténtelo de nuevo más tarde.",
+  "userinfo": "Nombre de Usuario: {}\nCorreo Electrónico: {}",
+  "userinfodoctor": "Información del Médico:\nNombre: {}\nCorreo Electrónico: {}\nTeléfono: {}\nOtro: {}",
+  "userinfopharmacy": "Información de Farmacia:\nNombre: {}\n{}\n{}, {} {}\n{}",
+  "changelanguage": "Cambiar idioma",
+  "logout": "Cerrar Sesión",
+  "hello": "Hola",
+  "english": "Inglés",
+  "spanish": "Español",
+
+  "aboutmymedications": "Acerca de Mis Medicamentos",
+  "aboutmymedsintro": "¡Hola, {}! ¡Use esta página para ver los detalles de su medicamento o agregar uno nuevo!",
+  "medication": "Nombre: {}\nDescripción: {}\nDías: {}\nTiempo: {}\nCantidad: {}"
+}
