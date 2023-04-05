@@ -20,11 +20,11 @@ class AboutMedPage extends StatelessWidget {
             if (snapshot.data?[0].username != null) {
               return Column(
                 children: [
-                  AppBar(
+                  /*AppBar(
                     title: Text('aboutmymedications', style: TextStyle(color: Colors.white),).tr(),
                     centerTitle: true,
                     backgroundColor: Color(0xff020887),
-                  ),
+                  ),*/
                   SizedBox(height: 20),
                   Text('aboutmymedsintro').tr(args: [snapshot.data?[0].get('username')]),
                   SizedBox(height: 20),
@@ -41,9 +41,13 @@ class AboutMedPage extends StatelessWidget {
                               snapshot.data?[1][index].get('Name'),
                               snapshot.data?[1][index].get('Desc'),
                               snapshot.data?[1][index].get('Days'),
-                              snapshot.data?[1][index].get('Time'),
-                              snapshot.data?[1][index].get('amt'),
+                              snapshot.data?[1][index].get('Time').join(", "),
+                              snapshot.data?[1][index].get('amt').toRadixString(16),
                           ])),
+                          /*child: Center(child: Text('Name: ${snapshot.data?[1][index].get('Name')}'
+                              '\nDescription: ${snapshot.data?[1][index].get('Desc')}\nDays: ${snapshot.data?[1][index].get('Days')}'
+                              '\nTime: ${snapshot.data?[1][index].get('Time').join(" ")}\nAmount: ${snapshot.data?[1][index].get('amt')}',
+                            textAlign: TextAlign.center,)),*/
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) => const Divider(),
@@ -52,7 +56,7 @@ class AboutMedPage extends StatelessWidget {
                 ],
               );
             } else {
-              return Text("User not logged in");
+              return Text("");
             }
           }
 

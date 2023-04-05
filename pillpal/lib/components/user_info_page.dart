@@ -152,7 +152,7 @@ class UserInfoPage extends StatelessWidget {
                   ),
                 );
               } else {
-                return Text('hello').tr();
+                return Text("");
               }
             }
         )

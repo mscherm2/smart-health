@@ -601,41 +601,39 @@ class _MyHomePageState extends State<MyHomePage> {
     return LayoutBuilder(
         builder: (context, constraints) {
           return Scaffold(
-            body: Row(
-              children: [
-                SafeArea(
-                  child: NavigationRail(
-                    extended: constraints.maxWidth >= 600,
-                    destinations: [
-                      NavigationRailDestination(
-                        icon: Icon(Icons.medication),
-                        label: const Text('aboutmeds').tr(),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.calendar_month_outlined),
-                        label: const Text('calendar').tr(),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.person),
-                        label: const Text('myinfo').tr(),
-                      ),
-                    ],
-                    selectedIndex: selectedIndex,
-                    onDestinationSelected: (value) {
-                      setState(() {
-                        selectedIndex = value;
-                      });
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    child: page,
-                  ),
-                ),
-              ],
+            appBar: AppBar(
+              title: Text('title', style: TextStyle(color: Colors.white),).tr(),
+              centerTitle: true,
+              backgroundColor: Color(0xff020887),
             ),
+            body: Center(
+              child: Container(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                child: page,
+              ),
+            ),
+              bottomNavigationBar: BottomNavigationBar(
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.medication),
+                    label: 'Meds',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.calendar_month_outlined),
+                    label: 'Calendar',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.person),
+                    label: 'Profile',
+                  ),
+                ],
+                currentIndex: selectedIndex,
+                onTap: (value) {
+                  setState(() {
+                    selectedIndex = value;
+                  });
+                },
+              )
           );
         }
     );
