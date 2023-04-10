@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../services/about_med_service.dart';
@@ -38,11 +38,11 @@ class AboutMedPage extends StatelessWidget {
                           color: Colors.lightGreen[colorCodes[index % 3]],
                           child: Center(child: Text('medication',
                             textAlign: TextAlign.center,).tr(args: [
-                              snapshot.data?[1][index].get('Name'),
-                              snapshot.data?[1][index].get('Desc'),
-                              snapshot.data?[1][index].get('Days'),
-                              snapshot.data?[1][index].get('Time').join(", "),
-                              snapshot.data?[1][index].get('amt').toRadixString(16),
+                            snapshot.data?[1][index].get('Name'),
+                            snapshot.data?[1][index].get('Desc'),
+                            snapshot.data?[1][index].get('Days'),
+                            snapshot.data?[1][index].get('Time').join(", "),
+                            snapshot.data?[1][index].get('amt').toRadixString(16),
                           ])),
                           /*child: Center(child: Text('Name: ${snapshot.data?[1][index].get('Name')}'
                               '\nDescription: ${snapshot.data?[1][index].get('Desc')}\nDays: ${snapshot.data?[1][index].get('Days')}'
@@ -60,7 +60,7 @@ class AboutMedPage extends StatelessWidget {
             }
           }
 
-        ),
+      ),
     );
   }
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../authentication/LoginPage.dart';
 import '../main.dart';
 import '../services/user_service.dart';
+import '../utils/message.dart';
 
 class UserInfoPage extends StatelessWidget {
   @override
@@ -65,7 +67,7 @@ class UserInfoPage extends StatelessWidget {
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('userinfo', textAlign: TextAlign.center,).tr(args: [snapshot.data?[0].get('username'), snapshot.data?[0].get('email')])]
+                                Text('userinfo', textAlign: TextAlign.center, style: TextStyle(fontSize: 16),).tr(args: [snapshot.data?[0].get('username'), snapshot.data?[0].get('email')])]
                           )
                       ),
                       SizedBox(
@@ -83,7 +85,7 @@ class UserInfoPage extends StatelessWidget {
                             ),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text('userinfodoctor', textAlign: TextAlign.center,).tr(args: [snapshot.data?[1].get('name'), snapshot.data?[1].get('email'), snapshot.data?[1].get('phone'), snapshot.data?[1].get('other_info')])]
+                                children: [Text('userinfodoctor', textAlign: TextAlign.center, style: TextStyle(fontSize: 16),).tr(args: [snapshot.data?[1].get('name'), snapshot.data?[1].get('email'), snapshot.data?[1].get('phone'), snapshot.data?[1].get('other_info')])]
                             )
                         ),
                       ),
@@ -102,14 +104,14 @@ class UserInfoPage extends StatelessWidget {
                             ),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text('userinfopharmacy', textAlign: TextAlign.center,).tr(args: [snapshot.data?[2].get('name'), snapshot.data?[2].get('addr'), snapshot.data?[2].get('city'), snapshot.data?[2].get('state'), snapshot.data?[2].get('zip'), snapshot.data?[2].get('phone')])]
+                                children: [Text('userinfopharmacy', textAlign: TextAlign.center, style: TextStyle(fontSize: 16),).tr(args: [snapshot.data?[2].get('name'), snapshot.data?[2].get('addr'), snapshot.data?[2].get('city'), snapshot.data?[2].get('state'), snapshot.data?[2].get('zip'), snapshot.data?[2].get('phone')])]
                             )
                         ),
                       ),
                       SizedBox(
                           height: 25
                       ),
-                      Text('changelanguage').tr(),
+                      Text('changelanguage', style: TextStyle(fontSize: 16),).tr(),
                       Container(
                         height: 50,
                         child: DropdownButton<Locale>(
@@ -141,7 +143,7 @@ class UserInfoPage extends StatelessWidget {
                       Container(
                         height: 50,
                         child: ElevatedButton(
-                          child: const Text('logout').tr(),
+                          child: const Text('logout', style: TextStyle(fontSize: 16),).tr(),
                           onPressed: () => doUserLogout(),
                         ),
                       ),
