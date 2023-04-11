@@ -105,6 +105,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  day_picker:
+    dependency: "direct main"
+    description:
+      name: day_picker
+      sha256: "9cce7011b3b8f6d9ef8d7df5a9ccdb80ec241552f55fa70321586bddb8b21631"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   dbus:
     dependency: transitive
     description:
@@ -224,6 +232,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_time_picker_spinner:
+    dependency: "direct main"
+    description:
+      name: flutter_time_picker_spinner
+      sha256: "95600709910ad0cd5fcaec6c371dbe2e81a78989a9ee8c08a356433e2ccff041"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
