@@ -14,12 +14,12 @@ import 'package:awesome_notifications/awesome_notifications.dart'
 import 'package:awesome_notifications/awesome_notifications.dart' as utils
     show AwesomeDateUtils;
 
-import 'package:awesome_notifications_example/models/media_model.dart';
-import 'package:awesome_notifications_example/utils/common_functions.dart'
-    if (dart.library.html) 'package:awesome_notifications_example/utils/common_web_functions.dart';
-import 'package:awesome_notifications_example/utils/media_player_central.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../models/media_model.dart';
+import '../utils/common_functions.dart';
+import '../utils/media_player_central.dart';
 
 /* *********************************************
     LARGE TEXT FOR OUR NOTIFICATIONS TESTS

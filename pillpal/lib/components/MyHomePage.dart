@@ -1,8 +1,8 @@
-import 'package:awesome_notifications_example/components/user_info_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'user_info_page.dart';
 import 'about_med_page.dart';
 import 'calendar_page.dart';
 

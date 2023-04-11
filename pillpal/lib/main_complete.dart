@@ -6,10 +6,11 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 
-import 'package:awesome_notifications_example/routes/routes.dart';
-import 'package:awesome_notifications_example/themes/themes_controller.dart';
-import 'package:awesome_notifications_example/notifications/notifications_controller.dart';
 import 'package:flutter/services.dart';
+import 'package:pillpal/routes/routes.dart';
+import 'package:pillpal/themes/themes_controller.dart';
+
+import 'notifications/notifications_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

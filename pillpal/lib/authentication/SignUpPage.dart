@@ -15,6 +15,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final controllerUsername = TextEditingController();
   final controllerPassword = TextEditingController();
   final controllerEmail = TextEditingController();
+  final controllerDoctorName = TextEditingController();
+  final controllerDoctorPhone = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +78,20 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 TextField(
                   controller: controllerPassword,
+                  obscureText: true,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'password'.tr()),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: controllerDoctorName,
                   obscureText: true,
                   keyboardType: TextInputType.text,
                   textCapitalization: TextCapitalization.none,
