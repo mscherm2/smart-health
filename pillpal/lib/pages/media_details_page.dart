@@ -1,14 +1,14 @@
 import 'dart:math';
 
-import 'package:awesome_notifications_example/utils/common_functions.dart';
-import 'package:awesome_notifications_example/notifications/notifications_util.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:palette_generator/palette_generator.dart';
-import 'package:awesome_notifications_example/models/media_model.dart';
-import 'package:awesome_notifications_example/utils/media_player_central.dart';
+
+import '../models/media_model.dart';
+import '../notifications/notifications_util.dart';
+import '../utils/common_functions.dart';
+import '../utils/media_player_central.dart';
 
 class MediaDetailsPage extends StatefulWidget {
   MediaDetailsPage();

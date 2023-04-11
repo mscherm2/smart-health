@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:awesome_notifications_example/common_widgets/remarkable_divisor.dart';
+import 'package:pillpal/common_widgets/remarkable_divisor.dart';
 
 class TextDivisor extends StatelessWidget {
   final String title;

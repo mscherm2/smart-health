@@ -7,8 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:awesome_notifications_example/main_complete.dart';
+import 'package:pillpal/main_complete.dart';
 
 void main() {
   testWidgets('Verify Platform version', (WidgetTester tester) async {

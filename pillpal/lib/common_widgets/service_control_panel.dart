@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:awesome_notifications_example/common_widgets/led_light.dart';
-import 'package:awesome_notifications_example/common_widgets/simple_button.dart';
+import 'package:pillpal/common_widgets/simple_button.dart';
+
+import 'led_light.dart';
 
 class ServiceControlPanel extends StatelessWidget {
   final String title;

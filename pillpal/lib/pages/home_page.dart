@@ -1,23 +1,23 @@
 import 'package:universal_io/io.dart';
 import 'dart:math';
 
-import 'package:awesome_notifications_example/common_widgets/led_light.dart';
-import 'package:awesome_notifications_example/common_widgets/seconds_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 
-import 'package:awesome_notifications_example/routes/routes.dart';
-import 'package:awesome_notifications_example/notifications/notifications_util.dart';
-
-import 'package:awesome_notifications_example/common_widgets/check_button.dart';
-import 'package:awesome_notifications_example/common_widgets/remarkble_text.dart';
-import 'package:awesome_notifications_example/common_widgets/simple_button.dart';
-import 'package:awesome_notifications_example/common_widgets/text_divisor.dart';
-import 'package:awesome_notifications_example/common_widgets/text_note.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:vibration/vibration.dart';
+
+import '../common_widgets/check_button.dart';
+import '../common_widgets/led_light.dart';
+import '../common_widgets/remarkble_text.dart';
+import '../common_widgets/seconds_slider.dart';
+import '../common_widgets/simple_button.dart';
+import '../common_widgets/text_divisor.dart';
+import '../common_widgets/text_note.dart';
+import '../notifications/notifications_util.dart';
+import '../routes/routes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

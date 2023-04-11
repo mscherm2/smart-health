@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:awesome_notifications_example/models/media_model.dart';
-import 'package:awesome_notifications_example/utils/playback_timer.dart';
+import 'package:pillpal/utils/playback_timer.dart';
+
+import '../models/media_model.dart';
 
 enum MediaLifeCycle {
   Stopped,
