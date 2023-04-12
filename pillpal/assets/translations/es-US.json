@@ -29,5 +29,17 @@
 
   "aboutmymedications": "Acerca de Mis Medicamentos",
   "aboutmymedsintro": "¡Hola, {}! ¡Use esta página para ver los detalles de su medicamento o agregar uno nuevo!",
-  "medication": "Nombre: {}\nDescripción: {}\nDías: {}\nTiempo: {}\nCantidad: {}"
+  "medication": "Nombre: {}\nDescripción: {}\nDías: {}\nTiempo: {}\nCantidad: {}",
+
+  "doctorname": "Nombre del Médico",
+  "doctorphone": "Teléfono del Médico",
+  "doctoremail": "Correo Electrónico del Médico",
+  "doctorotherinfo": "Otra Información del Médico",
+
+  "pharmacyname": "Nombre de la Farmacia",
+  "pharmacyphone": "Teléfono de Farmacia",
+  "pharmacyaddr": "Dirección de la Farmacia",
+  "pharmacycity": "Ciudad Farmacia",
+  "pharmacystate": "Estado de Farmacia",
+  "pharmacyzip": "Código postal de la farmacia"
 }
