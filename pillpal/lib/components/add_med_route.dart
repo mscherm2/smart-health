@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
+import '../services/about_med_service.dart';
 
 class AddMedRoute extends StatefulWidget {
   const AddMedRoute({super.key});
@@ -223,17 +224,18 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                 onPressed: () {
                                   // Validate returns true if the form is valid, or false otherwise.
                                   if (_formKey.currentState!.validate()) {
-                                    // If the form is valid, display a snackbar. In the real world,
-                                    // you'd often call a server or save the information in a database.
-                                    /*ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Processing Data')),
-                                );*/
 
                                     // TODO: figure out how to add all times to list. this only adds the last one
                                     controllerTimes.add(_dateTime);
                                     //print(controllerTimes);
 
-                                    // TODO: call for add method here
+                                    // method call to create new medication in parse
+                                    createMed(controllerName.text, controllerDescription.text, controllerDays, controllerTimes, int.parse(controllerAmount.text), int.parse(controllerDoses.text));
+
+                                    // display message to user that it worked
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Medication added!')),
+                                    );
 
                                     // command to go back to previous page
                                     Navigator.pop(context);

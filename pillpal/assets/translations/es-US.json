@@ -29,5 +29,5 @@
 
   "aboutmymedications": "Acerca de Mis Medicamentos",
   "aboutmymedsintro": "¡Hola, {}! ¡Use esta página para ver los detalles de su medicamento o agregar uno nuevo!",
-  "medication": "Nombre: {}\nDescripción: {}\nDías: {}\nTiempo: {}\nCantidad: {}"
+  "medication": "Nombre: {}\nDescripción: {}\nDías: {}\nTiempo: {}\nCantidad: {}\nDosis Restantes: {}"
 }

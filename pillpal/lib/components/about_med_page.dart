@@ -34,9 +34,10 @@ class AboutMedPage extends StatelessWidget {
                                 textAlign: TextAlign.center,).tr(args: [
                                 snapshot.data?[1][index].get('Name'),
                                 snapshot.data?[1][index].get('Desc'),
-                                snapshot.data?[1][index].get('Days'),
-                                snapshot.data?[1][index].get('Time').join(", "),
-                                snapshot.data?[1][index].get('amt').toRadixString(16),
+                                snapshot.data?[1][index].get('days').join(", "),
+                                snapshot.data?[1][index].get('Time').join(", "), // TODO: fix time display
+                                snapshot.data?[1][index].get('amt').toRadixString(10),
+                                snapshot.data?[1][index].get('doseCount').toRadixString(10),
                               ])),
                               /*child: Center(child: Text('Name: ${snapshot.data?[1][index].get('Name')}'
                                   '\nDescription: ${snapshot.data?[1][index].get('Desc')}\nDays: ${snapshot.data?[1][index].get('Days')}'

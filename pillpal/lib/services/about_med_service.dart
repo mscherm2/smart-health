@@ -1,10 +1,12 @@
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
+// get method to get current user
 Future<ParseUser?> getUser() async {
   ParseUser? currentUser = await ParseUser.currentUser() as ParseUser?;
   return currentUser;
 }
 
+// get method to get all medication objects for the current user
 Future<List<ParseObject>> getMeds() async {
   final QueryBuilder<ParseObject> parseQuery = QueryBuilder<ParseObject>(ParseObject('Medication'));
   // `whereContains` is a basic query method that checks if string field
@@ -26,4 +28,19 @@ Future<List<ParseObject>> getMeds() async {
     results = [];
   }
   return results;
+}
+
+// post method to create new medication object
+void createMed(name, desc, days, times, amt, doseCnt) async {
+  final ParseUser? currentUser = await getUser();
+
+  var newMedObj = ParseObject('Medication');
+  newMedObj.set('Name', name);
+  newMedObj.set('Desc', desc);
+  newMedObj.set('days', days);
+  newMedObj.set('Time', times); // this is an array of DateTime objects
+  newMedObj.set('amt', amt);
+  newMedObj.set('doseCount', doseCnt);
+  newMedObj.set('user_id', currentUser);
+  await newMedObj.save();
 }
