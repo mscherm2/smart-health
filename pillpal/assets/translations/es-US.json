@@ -41,5 +41,8 @@
   "pharmacyaddr": "Dirección de la Farmacia",
   "pharmacycity": "Ciudad Farmacia",
   "pharmacystate": "Estado de Farmacia",
-  "pharmacyzip": "Código postal de la farmacia"
+  "pharmacyzip": "Código postal de la farmacia",
+
+  "medsuccess": "¡Sí, tomé mis medicamentos!",
+  "remindhour": "¡Recuérdamelo en 1 hora!\"!"
 }

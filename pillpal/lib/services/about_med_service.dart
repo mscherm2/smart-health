@@ -28,14 +28,10 @@ Future<List<ParseObject>> getMeds() async {
   return results;
 }
 
-Future<List<ParseObject>> getMedByName(name) async {
+Future<List<ParseObject>> getMedById(id) async {
   final QueryBuilder<ParseObject> parseQuery = QueryBuilder<ParseObject>(ParseObject('Medication'));
-  // `whereContains` is a basic query method that checks if string field
-  // contains a specific substring
-  final ParseUser? currentUser = await getUser();
 
-  parseQuery.whereContains('user_id', currentUser?.get('objectId'));
-  parseQuery.whereContains('name', name);
+  parseQuery.whereContains('objectId', id);
 
   // The query will resolve only after calling this method, retrieving
   // an array of `ParseObjects`, if success

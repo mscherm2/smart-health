@@ -93,7 +93,7 @@ class NotificationController {
       // For background actions, you must hold the execution until the end
       print('Message sent via notification input: "${receivedAction.buttonKeyInput}"');
       if (receivedAction.buttonKeyPressed == 'YES') {
-        await successfulDoseAdministration(receivedAction.payload!["name"]);
+        await successfulDoseAdministration(receivedAction.payload!["id"]);
       } else if (receivedAction.buttonKeyPressed == 'REMINDHOUR') {
         await scheduleNewNotification(
             receivedAction.payload!["id"],
@@ -179,9 +179,11 @@ class NotificationController {
   ///  *********************************************
   ///     BACKGROUND TASKS TEST
   ///  *********************************************
-  static Future<void> successfulDoseAdministration(name) async {
+  static Future<void> successfulDoseAdministration(id) async {
     print("DECREMENTING DOSECOUNT!");
-    var med_response = await getMedByName(name);
+    var med_response = await getMedById(id);
+
+    print(med_response);
 
     var update_med = ParseObject('Medication')
       ..objectId = med_response[0]["objectId"]
@@ -248,12 +250,12 @@ class NotificationController {
           NotificationActionButton(
               key: 'YES',
               label: 'Yes, I took my meds!',
-              actionType: ActionType.SilentBackgroundAction
+              actionType: ActionType.SilentAction
           ),
           NotificationActionButton(
               key: 'REMINDHOUR',
               label: 'Remind me in 1 hour!',
-              actionType: ActionType.SilentBackgroundAction,
+              actionType: ActionType.SilentAction,
               isDangerousOption: true
           ),
           NotificationActionButton(
@@ -414,6 +416,25 @@ class NotificationPage extends StatelessWidget {
 
   final ReceivedAction receivedAction;
 
+  void successNotificationHandler(context) async {
+    await NotificationController.successfulDoseAdministration(receivedAction.payload!["id"]);
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => UserPage()),
+          (Route<dynamic> route) => false,
+    );
+  }
+
+  void remindInHourHandler(context) async {
+    await NotificationController.scheduleNewNotification(
+        receivedAction.payload!["id"],
+        receivedAction.payload!["name"],
+        receivedAction.title,
+        receivedAction.body,
+        DateTime.now().add(const Duration(hours: 1))
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     bool hasLargeIcon = receivedAction.largeIconImage != null;
@@ -511,11 +532,25 @@ class NotificationPage extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              color: Colors.black12,
-              padding: const EdgeInsets.all(20),
-              width: MediaQuery.of(context).size.width,
-              child: Text(receivedAction.toString()),
+            SizedBox(
+              height: 16,
+            ),
+            Center(
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    child: Text('med_success', style: TextStyle(fontSize: 16)).tr(),
+                    onPressed: () => successNotificationHandler(context)
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  ElevatedButton(
+                    child: Text('remindhour', style: TextStyle(fontSize: 16)).tr(),
+                    onPressed: () => remindInHourHandler(context)
+                  ),
+                ],
+              ),
             ),
           ],
         ),
