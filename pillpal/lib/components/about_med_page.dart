@@ -40,7 +40,7 @@ class AboutMedPage extends StatelessWidget {
                             textAlign: TextAlign.center,).tr(args: [
                             snapshot.data?[1][index].get('Name'),
                             snapshot.data?[1][index].get('Desc'),
-                            snapshot.data?[1][index].get('Days'),
+                            snapshot.data?[1][index].get('days').join(", "),
                             snapshot.data?[1][index].get('Time').join(", "),
                             snapshot.data?[1][index].get('amt').toRadixString(16),
                           ])),

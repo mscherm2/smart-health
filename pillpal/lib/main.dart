@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
+import 'package:pillpal/services/about_med_service.dart';
 
 import 'authentication/LoginPage.dart';
 import 'authentication/UserPage.dart';
@@ -83,13 +84,25 @@ class NotificationController {
   static Future<void> onActionReceivedMethod(
       ReceivedAction receivedAction) async {
 
+    print('BUTTON KEY INPUT IS "${receivedAction.buttonKeyInput}"');
+    print('BUTTON KEY PRESSED IS "${receivedAction.buttonKeyPressed}"');
     if(
       receivedAction.actionType == ActionType.SilentAction ||
       receivedAction.actionType == ActionType.SilentBackgroundAction
     ){
       // For background actions, you must hold the execution until the end
       print('Message sent via notification input: "${receivedAction.buttonKeyInput}"');
-      await executeLongTaskInBackground();
+      if (receivedAction.buttonKeyPressed == 'YES') {
+        await successfulDoseAdministration(receivedAction.payload!["name"]);
+      } else if (receivedAction.buttonKeyPressed == 'REMINDHOUR') {
+        await scheduleNewNotification(
+            receivedAction.payload!["id"],
+            receivedAction.payload!["name"],
+            receivedAction.title,
+            receivedAction.body,
+            DateTime.now().add(const Duration(hours: 1))
+        );
+      }
     }
     else {
       MyApp.navigatorKey.currentState?.pushNamedAndRemoveUntil(
@@ -166,13 +179,14 @@ class NotificationController {
   ///  *********************************************
   ///     BACKGROUND TASKS TEST
   ///  *********************************************
-  static Future<void> executeLongTaskInBackground() async {
-    print("starting long task");
-    await Future.delayed(const Duration(seconds: 4));
-    final url = Uri.parse("http://google.com");
-    final re = await http.get(url);
-    print(re.body);
-    print("long task done");
+  static Future<void> successfulDoseAdministration(name) async {
+    print("DECREMENTING DOSECOUNT!");
+    var med_response = await getMedByName(name);
+
+    var update_med = ParseObject('Medication')
+      ..objectId = med_response[0]["objectId"]
+      ..set('doseCount', med_response[0]["doseCount"] - med_response[0]["amt"]);
+    await update_med.save();
   }
 
   ///  *********************************************
@@ -212,7 +226,7 @@ class NotificationController {
         ]);
   }
 
-  static Future<void> scheduleNewNotification() async {
+  static Future<void> scheduleNewNotification(id, name, title, body, notificationDateTime) async {
     bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
     if (!isAllowed) isAllowed = await displayNotificationRationale();
     if (!isAllowed) return;
@@ -221,34 +235,35 @@ class NotificationController {
         content: NotificationContent(
             id: -1, // -1 is replaced by a random number
             channelKey: 'alerts',
-            title: "Huston! The eagle has landed!",
-            body:
-                "A small step for a man, but a giant leap to Flutter's community!",
-            bigPicture: 'https://storage.googleapis.com/cms-storage-bucket/d406c736e7c4c57f5f61.png',
-            largeIcon: 'https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png',
-            //'asset://assets/images/balloons-in-sky.jpg',
+            title: title,
+            body: body,
+            bigPicture: 'asset://assets/images/large_logo.png',
+            largeIcon: 'asset://assets/images/small_logo.png',
             notificationLayout: NotificationLayout.BigPicture,
             payload: {
-              'notificationId': '1234567890'
+              'id': id,
+              'name': name
             }),
         actionButtons: [
-          NotificationActionButton(key: 'REDIRECT', label: 'Redirect'),
+          NotificationActionButton(
+              key: 'YES',
+              label: 'Yes, I took my meds!',
+              actionType: ActionType.SilentBackgroundAction
+          ),
+          NotificationActionButton(
+              key: 'REMINDHOUR',
+              label: 'Remind me in 1 hour!',
+              actionType: ActionType.SilentBackgroundAction,
+              isDangerousOption: true
+          ),
           NotificationActionButton(
               key: 'DISMISS',
-              label: 'Dismiss',
+              label: 'Dismiss!',
               actionType: ActionType.DismissAction,
-              isDangerousOption: true)
+              isDangerousOption: true
+          )
         ],
-        schedule: NotificationCalendar.fromDate(
-            date: DateTime.now().add(const Duration(seconds: 10))));
-  }
-
-  static Future<void> resetBadgeCounter() async {
-    await AwesomeNotifications().resetGlobalBadge();
-  }
-
-  static Future<void> cancelNotifications() async {
-    await AwesomeNotifications().cancelAll();
+        schedule: NotificationCalendar.fromDate(date: notificationDateTime));
   }
 }
 
