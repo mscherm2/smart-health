@@ -27,3 +27,23 @@ Future<List<ParseObject>> getMeds() async {
   }
   return results;
 }
+
+Future<List<ParseObject>> getMedById(id) async {
+  final QueryBuilder<ParseObject> parseQuery = QueryBuilder<ParseObject>(ParseObject('Medication'));
+
+  parseQuery.whereContains('objectId', id);
+
+  // The query will resolve only after calling this method, retrieving
+  // an array of `ParseObjects`, if success
+  final ParseResponse apiResponse = await parseQuery.query();
+
+  List<ParseObject> results = <ParseObject>[];
+
+  if (apiResponse.success && apiResponse.results != null) {
+    results = apiResponse.results as List<ParseObject>;
+  }
+  else {
+    results = [];
+  }
+  return results;
+}

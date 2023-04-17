@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../main.dart';
 import 'user_info_page.dart';
 import 'about_med_page.dart';
 import 'calendar_page.dart';
@@ -28,6 +29,8 @@ class _MyHomePageState extends State<MyHomePage> {
         page = CalendarPage();
         break;
       case 2:
+        String? test_id = "0dV968LPUR";
+        NotificationController.scheduleNewNotification(test_id, "Notre Dame", "Time to take your 2 doses of Notre Dame!", "Go Irish!", DateTime.now().add(const Duration(seconds: 10)));
         page = UserInfoPage();
         break;
       default:

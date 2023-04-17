@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
+import '../services/doctor_service.dart';
+import '../services/pharmacy_service.dart';
 import '../utils/message.dart';
 import 'UserPage.dart';
 
@@ -17,6 +19,14 @@ class _SignUpPageState extends State<SignUpPage> {
   final controllerEmail = TextEditingController();
   final controllerDoctorName = TextEditingController();
   final controllerDoctorPhone = TextEditingController();
+  final controllerDoctorEmail = TextEditingController();
+  final controllerDoctorOther = TextEditingController();
+  final controllerPharmacyName = TextEditingController();
+  final controllerPharmacyPhone = TextEditingController();
+  final controllerPharmacyStreetAddress = TextEditingController();
+  final controllerPharmacyCity = TextEditingController();
+  final controllerPharmacyState = TextEditingController();
+  final controllerPharmacyZip = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +43,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   height: 200,
                   child: Image.asset(
-                      'assets/images/curr_logo.png'),
-                ),
-                Center(
-                  child: const Text('title',
-                      style:
-                      TextStyle(fontSize: 18, fontWeight: FontWeight.bold)).tr(),
+                      'assets/images/large_logo.png'),
                 ),
                 SizedBox(
                   height: 16,
@@ -88,21 +93,151 @@ class _SignUpPageState extends State<SignUpPage> {
                       labelText: 'password'.tr()),
                 ),
                 SizedBox(
-                  height: 8,
+                  height: 16,
+                ),
+                Center(
+                  child: const Text('Doctor Information',
+                      style: TextStyle(fontSize: 16)).tr(),
+                ),
+                SizedBox(
+                  height: 16,
                 ),
                 TextField(
                   controller: controllerDoctorName,
-                  obscureText: true,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'doctorname'.tr()),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: controllerDoctorPhone,
                   keyboardType: TextInputType.text,
                   textCapitalization: TextCapitalization.none,
                   autocorrect: false,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'password'.tr()),
+                      labelText: 'doctorphone'.tr()),
                 ),
                 SizedBox(
                   height: 8,
+                ),
+                TextField(
+                  controller: controllerDoctorEmail,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'doctoremail'.tr()),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  minLines: 3, // any number you need (It works as the rows for the textarea)
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  controller: controllerDoctorOther,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'doctorotherinfo'.tr()),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Center(
+                  child: const Text('Pharmacy Information',
+                      style: TextStyle(fontSize: 16)).tr(),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                TextField(
+                  controller: controllerPharmacyName,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'pharmacyname'.tr()),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: controllerPharmacyPhone,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'pharmacyphone'.tr()),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: controllerPharmacyStreetAddress,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'pharmacyaddr'.tr()),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: controllerPharmacyCity,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'pharmacycity'.tr()),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: controllerPharmacyState,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'pharmacystate'.tr()),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: controllerPharmacyZip,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      labelText: 'pharmacyzip'.tr()),
+                ),
+                SizedBox(
+                  height: 16,
                 ),
                 Container(
                   height: 50,
@@ -157,22 +292,38 @@ class _SignUpPageState extends State<SignUpPage> {
     final username = controllerUsername.text.trim();
     final email = controllerEmail.text.trim();
     final password = controllerPassword.text.trim();
+    final doctorName = controllerDoctorName.text.trim();
+    final doctorPhone = controllerDoctorPhone.text.trim();
+    final doctorEmail = controllerDoctorEmail.text.trim();
+    final doctorOther = controllerDoctorOther.text.trim();
+    final pharmacyName = controllerPharmacyName.text.trim();
+    final pharmacyPhone = controllerPharmacyPhone.text.trim();
+    final pharmacyAddr = controllerPharmacyStreetAddress.text.trim();
+    final pharmacyCity = controllerPharmacyCity.text.trim();
+    final pharmacyState = controllerPharmacyState.text.trim();
+    final pharmacyZip = controllerPharmacyZip.text.trim();
 
     final user = ParseUser.createUser(username, password, email);
 
     var response = await user.signUp();
 
     if (response.success) {
-      Message.showSuccess(
-          context: context,
-          message: 'successful'.tr(),
-          onPressed: () async {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => UserPage()),
-                  (Route<dynamic> route) => false,
-            );
-          });
+      var doctorResponse = await createDoctor(doctorName, doctorPhone, doctorEmail, doctorOther);
+
+      var pharmacyResponse = await createPharmacy(pharmacyName, pharmacyPhone, pharmacyAddr, pharmacyCity, pharmacyState, pharmacyZip);
+
+      if (doctorResponse.success && pharmacyResponse.success) {
+        Message.showSuccess(
+            context: context,
+            message: 'successful'.tr(),
+            onPressed: () async {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => UserPage()),
+                    (Route<dynamic> route) => false,
+              );
+            });
+      }
     } else {
       Message.showError(context: context, message: response.error!.message);
     }
