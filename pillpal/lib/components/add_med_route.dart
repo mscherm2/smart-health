@@ -21,7 +21,8 @@ class _AddMedRouteState extends State<AddMedRoute> {
   final controllerAmount = TextEditingController();
   final controllerDoses = TextEditingController();
 
-  DateTime _dateTime = DateTime.now();
+  //DateTime _dateTime = DateTime.now();
+  var allTimes = {};
 
   List<DayInWeek> _days = [
     DayInWeek(
@@ -154,7 +155,9 @@ class _AddMedRouteState extends State<AddMedRoute> {
                           isForce2Digits: true,
                           onTimeChange: (time) {
                             setState(() {
-                              _dateTime = time;
+                              //_dateTime = time;
+                              //allTimes[0].add(time);
+                              allTimes['1'] = time;
                             });
                           },
                         ),
@@ -170,7 +173,9 @@ class _AddMedRouteState extends State<AddMedRoute> {
                               isForce2Digits: true,
                               onTimeChange: (time) {
                                 setState(() {
-                                  _dateTime = time;
+                                  //_dateTime = time;
+                                  //allTimes[x-1].add(time);
+                                  allTimes['$x'] = time;
                                 });
                               },
                             ),
@@ -225,14 +230,13 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                   // Validate returns true if the form is valid, or false otherwise.
                                   if (_formKey.currentState!.validate()) {
 
-                                    // TODO: figure out how to add all times to list. this only adds the last one
-                                    controllerTimes.add(_dateTime);
-                                    //print(controllerTimes);
+                                    // add times to list
+                                    allTimes.forEach((k,v) => controllerTimes.add(v));
 
                                     // method call to create new medication in parse
                                     createMed(controllerName.text, controllerDescription.text, controllerDays, controllerTimes, int.parse(controllerAmount.text), int.parse(controllerDoses.text));
 
-                                    // display message to user that it worked
+                                    // display message to u45:58.000}ser that it worked
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(content: Text('Medication added!')),
                                     );

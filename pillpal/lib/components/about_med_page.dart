@@ -27,6 +27,14 @@ class AboutMedPage extends StatelessWidget {
                           padding: const EdgeInsets.all(8),
                           itemCount: snapshot.data?[1].length,
                           itemBuilder: (BuildContext context, int index) {
+                            // format times
+                            var timeList = snapshot.data?[1][index].get('Time');
+                            var newTimeList = [];
+                            timeList.forEach((element) =>
+                                newTimeList.add(DateFormat.Hm().format(element.toLocal()))
+                            );
+                            var timeString = newTimeList.join(", ");
+
                             return Container(
                               height: 140,
                               color: Colors.purple[colorCodes[index % 3]],
@@ -35,14 +43,10 @@ class AboutMedPage extends StatelessWidget {
                                 snapshot.data?[1][index].get('Name'),
                                 snapshot.data?[1][index].get('Desc'),
                                 snapshot.data?[1][index].get('days').join(", "),
-                                snapshot.data?[1][index].get('Time').join(", "), // TODO: fix time display
+                                timeString,
                                 snapshot.data?[1][index].get('amt').toRadixString(10),
                                 snapshot.data?[1][index].get('doseCount').toRadixString(10),
                               ])),
-                              /*child: Center(child: Text('Name: ${snapshot.data?[1][index].get('Name')}'
-                                  '\nDescription: ${snapshot.data?[1][index].get('Desc')}\nDays: ${snapshot.data?[1][index].get('Days')}'
-                                  '\nTime: ${snapshot.data?[1][index].get('Time').join(" ")}\nAmount: ${snapshot.data?[1][index].get('amt')}',
-                                textAlign: TextAlign.center,)),*/
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) => const Divider(),
