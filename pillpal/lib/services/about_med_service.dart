@@ -43,6 +43,7 @@ void createMed(name, desc, days, times, amt, doseCnt) async {
   newMedObj.set('doseCount', doseCnt);
   newMedObj.set('user_id', currentUser);
   await newMedObj.save();
+}
 
 Future<List<ParseObject>> getMedById(id) async {
   final QueryBuilder<ParseObject> parseQuery = QueryBuilder<ParseObject>(ParseObject('Medication'));
