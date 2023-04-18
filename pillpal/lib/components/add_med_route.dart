@@ -246,11 +246,46 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                     var amt = int.parse(controllerAmount.text);
                                     List<DateTime>? notificationTimes = controllerTimes.cast<DateTime>();
 
-                                    print("THIS IS MY MEDRESPONSE");
-                                    print(medResponse.result);
+                                    var weekdayInts = [];
+                                    for (var day in controllerDays) {
+                                      switch(day) {
+                                        case "Mon": {
+                                          weekdayInts.add(1);
+                                        }
+                                        break;
+                                        case "Tue": {
+                                          weekdayInts.add(2);
+                                        }
+                                        break;
+                                        case "Wed": {
+                                          weekdayInts.add(3);
+                                        }
+                                        break;
+                                        case "Thu": {
+                                          weekdayInts.add(4);
+                                        }
+                                        break;
+                                        case "Fri": {
+                                          weekdayInts.add(5);
+                                        }
+                                        break;
+                                        case "Sat": {
+                                          weekdayInts.add(6);
+                                        }
+                                        break;
+                                        case "Sun": {
+                                          weekdayInts.add(7);
+                                        }
+                                        break;
+                                      }
+                                    }
+
+                                    while (!weekdayInts.contains(notificationTimes[0].weekday)) {
+                                      notificationTimes.add(notificationTimes[0].add(Duration(days: 1)));
+                                      notificationTimes.removeAt(0);
+                                    }
 
                                     if (medResponse.success) {
-
                                       while (notificationTimes.isNotEmpty) {
                                           if (DateTime.now().compareTo(notificationTimes[0]) < 0) {
                                             NotificationController.scheduleNewNotification(
@@ -269,8 +304,12 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                           }
 
                                           notificationTimes.add(notificationTimes[0].add(Duration(days: 1)));
-                                          notificationTimes.remove(0);
-                                          print(notificationTimes);
+                                          notificationTimes.removeAt(0);
+
+                                          while (!weekdayInts.contains(notificationTimes[0].weekday)) {
+                                            notificationTimes.add(notificationTimes[0].add(Duration(days: 1)));
+                                            notificationTimes.removeAt(0);
+                                          }
                                         }
                                       }
                                     }
