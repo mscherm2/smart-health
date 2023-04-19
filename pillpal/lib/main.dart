@@ -7,11 +7,16 @@ import 'package:pillpal/services/about_med_service.dart';
 
 import 'authentication/LoginPage.dart';
 import 'authentication/UserPage.dart';
-import 'components/MyHomePage.dart';
+import 'package:camera/camera.dart';
+
+var cameras = [];
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
+  // get list of the available cameras
+  cameras = await availableCameras();
 
   final keyApplicationId = 'LpMPZJZ7AXwu5KvzLgMIdZH1C0v5UcUgxuDZfiob';
   final keyClientKey = 'lO4WnUFbxnbwVdC4rCY9m8dKF01uax8rirzQUZh1';

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import '../services/about_med_service.dart';
+import '../main.dart';
+import 'cameraScreen.dart';
 
 class AddMedRoute extends StatefulWidget {
   const AddMedRoute({super.key});
@@ -47,6 +49,8 @@ class _AddMedRouteState extends State<AddMedRoute> {
       "Sat",
     ),
   ];
+
+  final firstCamera = cameras.first;
 
   @override
   Widget build(BuildContext context) {
@@ -220,6 +224,25 @@ class _AddMedRouteState extends State<AddMedRoute> {
                             },
                           ),
                         ),
+                        // camera
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => CameraScreen(camera: firstCamera,)),
+                                  );
+                                },
+                                child: Text("Add a picture"),
+                              )
+                            ],
+                          )
+                        ),
+
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                           child: Row(
