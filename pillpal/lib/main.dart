@@ -377,13 +377,98 @@ class _AppState extends State<MyApp> {
     }
     //Checks whether the user's session token is valid
     final ParseResponse? parseResponse =
-    await ParseUser.getCurrentUserFromServer(currentUser.sessionToken!);
+        await ParseUser.getCurrentUserFromServer(currentUser.sessionToken!);
 
     if (parseResponse?.success == null || !parseResponse!.success) {
       //Invalid session. Logout
       await currentUser.logout();
       return false;
     } else {
+      var userNotifications =
+          await AwesomeNotifications().listScheduledNotifications();
+
+      if (userNotifications.isEmpty) {
+        var userMeds = await getMedById(currentUser.objectId);
+
+        for (ParseObject userMed in userMeds) {
+          var doseCount = userMed.get("doseCount");
+          var amt = userMed.get("amt");
+          List<DateTime> notificationTimes = userMed.get("Time").cast<DateTime>();
+          List<String> controllerDays = userMed.get("days");
+
+          var weekdayInts = [];
+          for (var day in controllerDays) {
+            switch (day) {
+              case "Mon":
+                {
+                  weekdayInts.add(1);
+                }
+                break;
+              case "Tue":
+                {
+                  weekdayInts.add(2);
+                }
+                break;
+              case "Wed":
+                {
+                  weekdayInts.add(3);
+                }
+                break;
+              case "Thu":
+                {
+                  weekdayInts.add(4);
+                }
+                break;
+              case "Fri":
+                {
+                  weekdayInts.add(5);
+                }
+                break;
+              case "Sat":
+                {
+                  weekdayInts.add(6);
+                }
+                break;
+              case "Sun":
+                {
+                  weekdayInts.add(7);
+                }
+                break;
+            }
+          }
+
+          while (!weekdayInts.contains(notificationTimes[0].weekday)) {
+            notificationTimes.add(notificationTimes[0].add(Duration(days: 1)));
+            notificationTimes.removeAt(0);
+          }
+
+          while (notificationTimes.isNotEmpty) {
+            if (DateTime.now().compareTo(notificationTimes[0]) < 0) {
+              NotificationController.scheduleNewNotification(
+                  userMed.get("objectId"),
+                  userMed.get("Name"),
+                  "Time to take your " + userMed.get("Name") + "!",
+                  userMed.get("Desc"),
+                  notificationTimes[0]);
+
+              doseCount -= amt;
+
+              if (doseCount <= 0) {
+                break;
+              }
+            }
+
+            notificationTimes.add(notificationTimes[0].add(Duration(days: 1)));
+            notificationTimes.removeAt(0);
+
+            while (!weekdayInts.contains(notificationTimes[0].weekday)) {
+              notificationTimes.add(notificationTimes[0].add(Duration(days: 1)));
+              notificationTimes.removeAt(0);
+            }
+          }
+        }
+      }
+
       return true;
     }
   }
