@@ -38,7 +38,7 @@ class _CalendarPageState extends State<CalendarPage> {
     // Implementation example
     //return kEvents[day] ?? [];
     generateEvents();
-    return myEvents[day] ?? [];
+    return myEvents[DateFormat('yyyy-MM-dd').format(day)] ?? [];
   }
 
   List<Object> _getEventsForRange(DateTime start, DateTime end) {
