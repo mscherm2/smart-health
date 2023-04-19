@@ -28,34 +28,50 @@ final myEvents = LinkedHashMap<DateTime, List<Event>>(
   hashCode: getHashCode,
 )..addAll(_getMyEvents);*/
 
-final Map<String, List<String>> myEvents = HashMap();
+Map<String, List<String>> myEvents = HashMap();
 
 final Future<List<NotificationModel>> futureListMyEvents = AwesomeNotifications().listScheduledNotifications();
+
+var pastLength = 0;
 
 // kEvents['2023-Apr-4'] = ['9:00AM - Advil', '11:00AM - Claritin', ]
 // break NotificationModel down so
 
-void generateEvents() {
+Future<void> generateEvents() async {
 /* for event in listMyEvents:
       kEvents[event.schedule.toString().
       .payload!["name"]
       String date = DateFormat("yyyy-MM-dd hh:mm:ss").format(DateTime.now());
  */
 
-  futureListMyEvents.then((listMyEvents) {
-    for (var event in listMyEvents) {
-      String? date = (event.schedule)?.createdDate;
-      if (date != null) {
-        if (myEvents[date] == null) {
-          myEvents[date] = [];
-        }
-        String? n = (event.content)?.payload!["name"];
-        //(event.content)?.payload!["name"]
-        myEvents[date]?.add(date + ' - ' + n!);
-      }
-    }
-  });
+  List<NotificationModel> currEvents = await AwesomeNotifications().listScheduledNotifications();
 
+  print(currEvents.length);
+
+  if (currEvents.length != pastLength) {
+    myEvents = HashMap();
+    print("HEY YA");
+    currEvents.forEach((element) =>
+    {
+      addEvent(element.toMap())
+    });
+    pastLength = currEvents.length;
+  }
+
+  print(myEvents);
+
+}
+
+void addEvent(Map<String, dynamic> event) {
+  DateTime date = new DateTime(event["schedule"]["year"], event["schedule"]["month"], event["schedule"]["day"], event["schedule"]["hour"], event["schedule"]["minute"]);
+  print(date);
+  if (date != null) {
+    if (myEvents[DateFormat('yyyy-MM-dd').format(date)] == null) {
+      myEvents[DateFormat('yyyy-MM-dd').format(date)] = [];
+    }
+    String? n = event["content"]["payload"]["name"];
+    myEvents[DateFormat('yyyy-MM-dd').format(date)]?.add(date.toString() + ' - ' + n!);
+  }
 }
 
 /*final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
