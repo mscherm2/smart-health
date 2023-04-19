@@ -84,8 +84,10 @@ class UserInfoPage extends StatelessWidget {
                             ),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text('userinfodoctor', textAlign: TextAlign.center, style: TextStyle(fontSize: 16),).tr(args: [snapshot.data?[1].get('name'), snapshot.data?[1].get('email'), snapshot.data?[1].get('phone'), snapshot.data?[1].get('other_info')])]
-                            )
+                                children: [Expanded(
+                                    child: Text('userinfodoctor', textAlign: TextAlign.center, style: TextStyle(fontSize: 16),).tr(args: [snapshot.data?[1].get('name'), snapshot.data?[1].get('email'), snapshot.data?[1].get('phone'), snapshot.data?[1].get('other_info')])
+                                ),
+                            ])
                         ),
                       ),
                       SizedBox(
