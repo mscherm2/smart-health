@@ -406,6 +406,8 @@ class _AppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        // TODO: font not working
+        fontFamily: 'Poppins',
       ),
     );
   }

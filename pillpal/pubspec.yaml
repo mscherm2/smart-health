@@ -109,3 +109,12 @@ flutter:
     - assets/translations/es-US.json
     - assets/images/large_logo.png
     - assets/images/small_logo.png
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+        - asset: fonts/Poppins-Italic.ttf
+          style: italic
+        - asset: fonts/Poppins-Bold.ttf
+          weight: 700
