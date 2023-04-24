@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text('title', style: TextStyle(color: Colors.white),).tr(),
                 centerTitle: true,
                 backgroundColor: Color(0xff020887),
+                titleTextStyle: TextStyle(fontSize: 30),
               ),
               body: Center(
                 child: Container(

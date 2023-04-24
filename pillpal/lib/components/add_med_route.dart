@@ -87,7 +87,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                       MaterialPageRoute(builder: (context) => CameraScreen(camera: firstCamera,)),
                                     );
                                   },
-                                  child: Text("Add a picture"),
+                                  child: Text("Add a picture", style: TextStyle(fontSize: 20)),
                                 )
                               ],
                             )
@@ -101,6 +101,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                               labelText: 'Medication Name',
                               filled: true,
                               fillColor: Colors.white,
+                              labelStyle: TextStyle(fontSize: 20)
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -119,6 +120,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                               labelText: 'Description',
                               filled: true,
                               fillColor: Colors.white,
+                              labelStyle: TextStyle(fontSize: 20)
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -128,11 +130,11 @@ class _AddMedRouteState extends State<AddMedRoute> {
                             },
                           ),
                         ),
-                        Text('When to Take: Select days of week', style: TextStyle(fontSize: 16),),
+                        Text('When to Take: Select days of week', style: TextStyle(fontSize: 20),),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SelectWeekDays(
-                            fontSize:16,
+                            fontSize:14,
                             fontWeight: FontWeight.w500,
                             days: _days,
                             border: false,
@@ -163,6 +165,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                               labelText: 'How many times a day?',
                               filled: true,
                               fillColor: Colors.white,
+                              labelStyle: TextStyle(fontSize: 20)
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -174,7 +177,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                         ),
 
                         // first time picker
-                        Text('Time 1:', style: TextStyle(fontSize: 16),),
+                        Text('Time 1:', style: TextStyle(fontSize: 20),),
                         TimePickerSpinner(
                           spacing: 20,
                           minutesInterval: 15,
@@ -192,7 +195,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                         // rest of time pickers if applicable
                         if (controllerHowManyTimes.text.isNotEmpty)...[
                           for(int x = 2; x <= int.parse(controllerHowManyTimes.text); x++)...[
-                            Text('Time $x:'),
+                            Text('Time $x:', style: TextStyle(fontSize: 20)),
                             TimePickerSpinner(
                               spacing: 20,
                               minutesInterval: 15,
@@ -219,6 +222,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                               labelText: 'Amount to Take at a Time?',
                               filled: true,
                               fillColor: Colors.white,
+                              labelStyle: TextStyle(fontSize: 20)
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -238,6 +242,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                               labelText: 'How many doses do you have to start with?',
                               filled: true,
                               fillColor: Colors.white,
+                              labelStyle: TextStyle(fontSize: 16)
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -355,7 +360,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                         MaterialPageRoute(builder: (context) => MyHomePage()),
                                     );
                                 },
-                                child: const Text('Submit'),
+                                child: const Text('Submit', style: TextStyle(fontSize: 20)),
                               ),
                               SizedBox(width: 20),
                               ElevatedButton(
@@ -365,7 +370,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                       MaterialPageRoute(builder: (context) => MyHomePage()),
                                   );
                                 },
-                                child: const Text('Go back!'),
+                                child: const Text('Go back!', style: TextStyle(fontSize: 20)),
                               ),
                             ],
                           ),

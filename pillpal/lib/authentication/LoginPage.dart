@@ -23,9 +23,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('title').tr(),
-        ),
         body: Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(8),
@@ -49,7 +46,9 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'username'.tr()),
+                      labelText: 'username'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 8,
@@ -64,16 +63,8 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'password'.tr()),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 50,
-                  child: ElevatedButton(
-                    child: const Text('login').tr(),
-                    onPressed: isLoggedIn ? null : () => doUserLogin(),
+                      labelText: 'password'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
                   ),
                 ),
                 SizedBox(
@@ -82,7 +73,17 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
-                    child: const Text('signup').tr(),
+                    onPressed: isLoggedIn ? null : () => doUserLogin(),
+                    child: const Text('login', style: TextStyle(fontSize: 20)).tr(),
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Container(
+                  height: 50,
+                  child: ElevatedButton(
+                    child: const Text('signup', style: TextStyle(fontSize: 20)).tr(),
                     onPressed: () => navigateToSignUp(),
                   ),
                 ),
@@ -92,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
-                    child: const Text('resetpassword').tr(),
+                    child: const Text('resetpassword', style: TextStyle(fontSize: 20)).tr(),
                     onPressed: () => navigateToResetPassword(),
                   ),
                 ),
@@ -100,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 8,
                 ),
                 Center(
-                  child: const Text('changelanguage').tr(),
+                  child: const Text('changelanguage', style: TextStyle(fontSize: 20)).tr(),
                 ),
                 SizedBox(
                   height: 8,
@@ -122,11 +123,11 @@ class _LoginPageState extends State<LoginPage> {
                       items: [
                         DropdownMenuItem<Locale>(
                           value: Locale('en', 'US'),
-                          child: Text('english').tr(),
+                          child: Text('english', style: TextStyle(fontSize: 20)).tr(),
                         ),
                         DropdownMenuItem<Locale>(
                           value: Locale('es', 'US'),
-                          child: Text('spanish').tr(),
+                          child: Text('spanish', style: TextStyle(fontSize: 20)).tr(),
                         ),
                       ],
                     ),
