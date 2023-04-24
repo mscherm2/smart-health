@@ -44,6 +44,7 @@
   "pharmacystate": "Estado de Farmacia",
   "pharmacyzip": "Código postal de la farmacia",
 
+  "notificationprompt": "¡Es hora de tomar {}!",
   "medsuccess": "¡Sí, tomé mis medicamentos!",
   "remindhour": "¡Recuérdamelo en 1 hora!\"!"
 

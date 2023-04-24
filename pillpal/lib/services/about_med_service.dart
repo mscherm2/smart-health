@@ -33,7 +33,7 @@ Future<List<ParseObject>> getMeds() async {
 }
 
 // post method to create new medication object
-void createMed(name, desc, days, times, amt, doseCnt, pickedFile) async {
+Future<ParseResponse> createMed(name, desc, days, times, amt, doseCnt, pickedFile) async {
   final ParseUser? currentUser = await getUser();
 
   var newMedObj = ParseObject('Medication');
@@ -44,7 +44,6 @@ void createMed(name, desc, days, times, amt, doseCnt, pickedFile) async {
   newMedObj.set('amt', amt);
   newMedObj.set('doseCount', doseCnt);
   newMedObj.set('user_id', currentUser);
-
   if (!pickedFile.contains('asset')) {
     ParseFileBase? parseFile;
     parseFile = ParseFile(File(pickedFile));
@@ -52,7 +51,7 @@ void createMed(name, desc, days, times, amt, doseCnt, pickedFile) async {
     newMedObj.set('Image', parseFile);
   }
 
-  await newMedObj.save();
+  return await newMedObj.save();
 }
 
 Future<List<ParseObject>> getMedById(id) async {

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
+import '../main.dart';
 import '../services/about_med_service.dart';
 import '../main.dart';
 import 'MyHomePage.dart';
@@ -261,7 +262,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ElevatedButton(
-                                onPressed: () {
+                                onPressed: () async {
                                   // Validate returns true if the form is valid, or false otherwise.
                                   if (_formKey.currentState!.validate()) {
 
@@ -269,12 +270,84 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                     allTimes.forEach((k,v) => controllerTimes.add(v));
 
                                     // method call to create new medication in parse
-                                    createMed(controllerName.text, controllerDescription.text, controllerDays, controllerTimes, int.parse(controllerAmount.text), int.parse(controllerDoses.text), widget.pillImagePath);
+                                    var medResponse = await createMed(controllerName.text, controllerDescription.text, controllerDays, controllerTimes, int.parse(controllerAmount.text), int.parse(controllerDoses.text), widget.pillImagePath);
 
                                     // display message to u45:58.000}ser that it worked
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(content: Text('Medication added!')),
                                     );
+
+                                    var doseCount = int.parse(controllerDoses.text);
+                                    var amt = int.parse(controllerAmount.text);
+                                    List<DateTime>? notificationTimes = controllerTimes.cast<DateTime>();
+
+                                    var weekdayInts = [];
+                                    for (var day in controllerDays) {
+                                      switch(day) {
+                                        case "Mon": {
+                                          weekdayInts.add(1);
+                                        }
+                                        break;
+                                        case "Tue": {
+                                          weekdayInts.add(2);
+                                        }
+                                        break;
+                                        case "Wed": {
+                                          weekdayInts.add(3);
+                                        }
+                                        break;
+                                        case "Thu": {
+                                          weekdayInts.add(4);
+                                        }
+                                        break;
+                                        case "Fri": {
+                                          weekdayInts.add(5);
+                                        }
+                                        break;
+                                        case "Sat": {
+                                          weekdayInts.add(6);
+                                        }
+                                        break;
+                                        case "Sun": {
+                                          weekdayInts.add(7);
+                                        }
+                                        break;
+                                      }
+                                    }
+
+                                    while (!weekdayInts.contains(notificationTimes[0].weekday)) {
+                                      notificationTimes.add(notificationTimes[0].add(Duration(days: 1)));
+                                      notificationTimes.removeAt(0);
+                                    }
+
+                                    if (medResponse.success) {
+                                      while (notificationTimes.isNotEmpty) {
+                                          if (DateTime.now().compareTo(notificationTimes[0]) < 0) {
+                                            NotificationController.scheduleNewNotification(
+                                              medResponse.result["objectId"],
+                                              medResponse.result["Name"],
+                                              "Time to take your " + medResponse.result["Name"] + "!",
+                                              medResponse.result["Desc"],
+                                              notificationTimes[0]
+                                            );
+
+                                            doseCount -= amt;
+
+                                            if (doseCount <= 0) {
+                                              break;
+                                            }
+                                          }
+
+                                          notificationTimes.add(notificationTimes[0].add(Duration(days: 1)));
+                                          notificationTimes.removeAt(0);
+
+                                          while (!weekdayInts.contains(notificationTimes[0].weekday)) {
+                                            notificationTimes.add(notificationTimes[0].add(Duration(days: 1)));
+                                            notificationTimes.removeAt(0);
+                                          }
+                                        }
+                                      }
+                                    }
 
                                     // command to go back to previous page
                                     Navigator.push(
