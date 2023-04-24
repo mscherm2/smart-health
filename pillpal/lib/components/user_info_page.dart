@@ -3,7 +3,6 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../authentication/LoginPage.dart';
-import '../main.dart';
 import '../services/user_service.dart';
 import '../utils/message.dart';
 

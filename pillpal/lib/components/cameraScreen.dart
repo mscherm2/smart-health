@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+import 'add_med_route.dart';
+
 class CameraScreen extends StatefulWidget {
   const CameraScreen({
     super.key,
@@ -109,7 +111,26 @@ class DisplayPictureScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Display the Picture')),
       // The image is stored as a file on the device. Use the `Image.file`
       // constructor with the given path to display the image.
-      body: Image.file(File(imagePath)),
+      body: Column(
+        children: [Image.file(File(imagePath)),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddMedRoute(pillImagePath: imagePath)),
+                    );
+                  },
+                  child: Text("Use This picture"),
+                )
+              ],
+            )
+        ),]
+      )
     );
   }
 }

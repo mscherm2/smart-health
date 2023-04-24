@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../services/about_med_service.dart';
@@ -36,26 +35,35 @@ class AboutMedPage extends StatelessWidget {
                             var timeString = newTimeList.join(", ");
 
                             return Container(
-                              height: 220,
                               decoration: BoxDecoration(
                                   color: Colors.purple[colorCodes[index % 3]],
                                   borderRadius: BorderRadius.all(Radius.circular(20))
                               ),
-                              child:
-                                Column(
+                              child: SingleChildScrollView(
+                                child: Column(
                                   children: [
                                     SizedBox(height: 15),
                                     Text(snapshot.data?[1][index].get('Name'), style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Poppins'),),
                                     Text('medication', style: TextStyle(fontSize: 20),
-                                      textAlign: TextAlign.left,).tr(args: [
+                                      textAlign: TextAlign.center,).tr(args: [
                                       snapshot.data?[1][index].get('Desc'),
                                       snapshot.data?[1][index].get('days').join(", "),
                                       timeString,
                                       snapshot.data?[1][index].get('amt').toRadixString(10),
                                       snapshot.data?[1][index].get('doseCount').toRadixString(10),
                                     ]),
+                                    if (snapshot.data?[1][index].get('Image') != null) ...[
+                                      Image.network(
+                                        snapshot.data?[1][index].get('Image')!.url!,
+                                        width: 200,
+                                        height: 200,
+                                        fit: BoxFit.fitHeight,
+                                      ),
+                                    ],
+                                    SizedBox(height: 15),
                                   ],
                                 ),
+                            ),
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) => const Divider(),
@@ -65,7 +73,7 @@ class AboutMedPage extends StatelessWidget {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const AddMedRoute()),
+                              MaterialPageRoute(builder: (context) => const AddMedRoute(pillImagePath: 'assets/images/add_med_placeholder.png')),
                             );
                           },
                           icon: Icon(Icons.add),

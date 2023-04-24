@@ -1,7 +1,6 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import 'package:pillpal/services/about_med_service.dart';
 
