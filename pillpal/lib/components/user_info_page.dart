@@ -56,9 +56,10 @@ class UserInfoPage extends StatelessWidget {
                     children: [SizedBox(
                         height: 75
                     ),
-                      Container(
+                    Expanded(
+                      child: Container(
                           height: 75,
-                          width: 300,
+                          width: 350,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(
@@ -66,18 +67,23 @@ class UserInfoPage extends StatelessWidget {
                               ),
                               borderRadius: BorderRadius.all(Radius.circular(20))
                           ),
+                          //child: Align(
+                              //alignment: Alignment.center,
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('userinfo', textAlign: TextAlign.center, style: TextStyle(fontSize: 16),).tr(args: [snapshot.data?[0].get('username'), snapshot.data?[0].get('email')])]
-                          )
-                      ),
+                              children: [Expanded(
+                                child: Text('userinfo', textAlign: TextAlign.center, style: TextStyle(fontSize: 16),).tr(args: [snapshot.data?[0].get('username'), snapshot.data?[0].get('email')])
+                              )
+                          ])
+                      //),
+                    ),
+                    ),
                       SizedBox(
                           height: 25
                       ),
                       Expanded(
                         child: Container(
-                            width: 300,
+                          width: 350,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 border: Border.all(
@@ -98,7 +104,7 @@ class UserInfoPage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Container(
-                            width: 300,
+                            width: 350,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 border: Border.all(
@@ -108,9 +114,11 @@ class UserInfoPage extends StatelessWidget {
                             ),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text('userinfopharmacy', textAlign: TextAlign.center, style: TextStyle(fontSize: 16),).tr(args: [snapshot.data?[2].get('name'), snapshot.data?[2].get('addr'), snapshot.data?[2].get('city'), snapshot.data?[2].get('state'), snapshot.data?[2].get('zip'), snapshot.data?[2].get('phone')])]
-                            )
-                        ),
+                                children: [Expanded(
+                                  child: Text('userinfopharmacy', textAlign: TextAlign.center, style: TextStyle(fontSize: 16),).tr(args: [snapshot.data?[2].get('name'), snapshot.data?[2].get('addr'), snapshot.data?[2].get('city'), snapshot.data?[2].get('state'), snapshot.data?[2].get('zip'), snapshot.data?[2].get('phone')])
+                            ),
+                        ])
+                      ),
                       ),
                       SizedBox(
                           height: 25
