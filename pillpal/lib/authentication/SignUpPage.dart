@@ -32,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('title').tr(),
+          title: const Text('title', style: TextStyle(fontSize: 24)).tr(),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -50,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 Center(
                   child: const Text('userregistration',
-                      style: TextStyle(fontSize: 16)).tr(),
+                      style: TextStyle(fontSize: 20)).tr(),
                 ),
                 SizedBox(
                   height: 16,
@@ -63,7 +63,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'username'.tr()),
+                      labelText: 'username'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 8,
@@ -76,7 +78,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'email'.tr()),
+                      labelText: 'email'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 8,
@@ -90,14 +94,16 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'password'.tr()),
+                      labelText: 'password'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 16,
                 ),
                 Center(
                   child: const Text('Doctor Information',
-                      style: TextStyle(fontSize: 16)).tr(),
+                      style: TextStyle(fontSize: 20)).tr(),
                 ),
                 SizedBox(
                   height: 16,
@@ -109,7 +115,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'doctorname'.tr()),
+                      labelText: 'doctorname'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 8,
@@ -122,7 +130,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'doctorphone'.tr()),
+                      labelText: 'doctorphone'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 8,
@@ -135,7 +145,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'doctoremail'.tr()),
+                      labelText: 'doctoremail'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 8,
@@ -150,14 +162,16 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'doctorotherinfo'.tr()),
+                      labelText: 'doctorotherinfo'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 16,
                 ),
                 Center(
                   child: const Text('Pharmacy Information',
-                      style: TextStyle(fontSize: 16)).tr(),
+                      style: TextStyle(fontSize: 20)).tr(),
                 ),
                 SizedBox(
                   height: 16,
@@ -169,7 +183,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'pharmacyname'.tr()),
+                      labelText: 'pharmacyname'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 8,
@@ -182,7 +198,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'pharmacyphone'.tr()),
+                      labelText: 'pharmacyphone'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 8,
@@ -195,7 +213,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'pharmacyaddr'.tr()),
+                      labelText: 'pharmacyaddr'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 8,
@@ -208,7 +228,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'pharmacycity'.tr()),
+                      labelText: 'pharmacycity'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 8,
@@ -221,7 +243,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'pharmacystate'.tr()),
+                      labelText: 'pharmacystate'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 8,
@@ -234,7 +258,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
-                      labelText: 'pharmacyzip'.tr()),
+                      labelText: 'pharmacyzip'.tr(),
+                      labelStyle: TextStyle(fontSize: 20)
+                  ),
                 ),
                 SizedBox(
                   height: 16,
@@ -242,7 +268,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   height: 50,
                   child: ElevatedButton(
-                    child: const Text('signup').tr(),
+                    child: const Text('signup', style: TextStyle(fontSize: 20)).tr(),
                     onPressed: () => doUserRegistration(),
                   ),
                 ),
@@ -250,7 +276,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: 8,
                 ),
                 Center(
-                  child: const Text('changelanguage').tr(),
+                  child: const Text('changelanguage', style: TextStyle(fontSize: 20)).tr(),
                 ),
                 SizedBox(
                   height: 8,
@@ -272,11 +298,11 @@ class _SignUpPageState extends State<SignUpPage> {
                       items: [
                         DropdownMenuItem<Locale>(
                           value: Locale('en', 'US'),
-                          child: Text('english').tr(),
+                          child: Text('english', style: TextStyle(fontSize: 20)).tr(),
                         ),
                         DropdownMenuItem<Locale>(
                           value: Locale('es', 'US'),
-                          child: Text('spanish').tr(),
+                          child: Text('spanish', style: TextStyle(fontSize: 20)).tr(),
                         ),
                       ],
                     ),
