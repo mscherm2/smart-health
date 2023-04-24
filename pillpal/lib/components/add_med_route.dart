@@ -74,6 +74,24 @@ class _AddMedRouteState extends State<AddMedRoute> {
                   key: _formKey,
                   child: Column(
                       children: <Widget>[
+                        // insert picture button
+                        Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => CameraScreen(camera: firstCamera,)),
+                                    );
+                                  },
+                                  child: Text("Add a picture"),
+                                )
+                              ],
+                            )
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
@@ -229,24 +247,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                             },
                           ),
                         ),
-                        // camera
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => CameraScreen(camera: firstCamera,)),
-                                  );
-                                },
-                                child: Text("Add a picture"),
-                              )
-                            ],
-                          )
-                        ),
+
                         if (widget.pillImagePath.contains('asset')) ...[
                           Image.asset(widget.pillImagePath)
                         ] else ...[
