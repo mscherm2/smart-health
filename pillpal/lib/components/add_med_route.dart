@@ -1,11 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import '../main.dart';
 import '../services/about_med_service.dart';
+import '../main.dart';
+import 'MyHomePage.dart';
+import 'cameraScreen.dart';
 
 class AddMedRoute extends StatefulWidget {
-  const AddMedRoute({super.key});
+  const AddMedRoute({super.key, required this.pillImagePath});
+
+  final String pillImagePath;
 
   @override
   State<AddMedRoute> createState() => _AddMedRouteState();
@@ -48,6 +55,8 @@ class _AddMedRouteState extends State<AddMedRoute> {
       "Sat",
     ),
   ];
+
+  final firstCamera = cameras.first;
 
   @override
   Widget build(BuildContext context) {
@@ -221,6 +230,32 @@ class _AddMedRouteState extends State<AddMedRoute> {
                             },
                           ),
                         ),
+                        // camera
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => CameraScreen(camera: firstCamera,)),
+                                  );
+                                },
+                                child: Text("Add a picture"),
+                              )
+                            ],
+                          )
+                        ),
+                        if (widget.pillImagePath.contains('asset')) ...[
+                          Image.asset(widget.pillImagePath)
+                        ] else ...[
+                          Image.file(File(widget.pillImagePath))
+                        ],
+                        SizedBox(
+                          height: 8,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                           child: Row(
@@ -235,7 +270,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                     allTimes.forEach((k,v) => controllerTimes.add(v));
 
                                     // method call to create new medication in parse
-                                    var medResponse = await createMed(controllerName.text, controllerDescription.text, controllerDays, controllerTimes, int.parse(controllerAmount.text), int.parse(controllerDoses.text));
+                                    var medResponse = await createMed(controllerName.text, controllerDescription.text, controllerDays, controllerTimes, int.parse(controllerAmount.text), int.parse(controllerDoses.text), widget.pillImagePath);
 
                                     // display message to u45:58.000}ser that it worked
                                     ScaffoldMessenger.of(context).showSnackBar(
@@ -315,14 +350,21 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                     }
 
                                     // command to go back to previous page
-                                    Navigator.pop(context);
-                                  },
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => MyHomePage()),
+                                    );
+                                  }
+                                },
                                 child: const Text('Submit'),
                               ),
                               SizedBox(width: 20),
                               ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => MyHomePage()),
+                                  );
                                 },
                                 child: const Text('Go back!'),
                               ),

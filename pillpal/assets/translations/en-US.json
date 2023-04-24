@@ -30,7 +30,7 @@
   "aboutmymedications": "About My Medications",
   "aboutmymedsintro": "Hello, {}! Use this page to see your medication details or add a new one!",
 
-  "medication": "Name: {}\nDescription: {}\nDays: {}\nTime: {}\nAmount: {}\nDoses Remaining: {}",
+  "medication": "Description: {}\nDays: {}\nTime: {}\nAmount: {}\nDoses Remaining: {}",
 
   "doctorname": "Doctor Name",
   "doctorphone": "Doctor Phone",

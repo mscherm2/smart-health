@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
 // get method to get current user
@@ -31,7 +33,7 @@ Future<List<ParseObject>> getMeds() async {
 }
 
 // post method to create new medication object
-Future<ParseResponse> createMed(name, desc, days, times, amt, doseCnt) async {
+Future<ParseResponse> createMed(name, desc, days, times, amt, doseCnt, pickedFile) async {
   final ParseUser? currentUser = await getUser();
 
   var newMedObj = ParseObject('Medication');
@@ -42,6 +44,13 @@ Future<ParseResponse> createMed(name, desc, days, times, amt, doseCnt) async {
   newMedObj.set('amt', amt);
   newMedObj.set('doseCount', doseCnt);
   newMedObj.set('user_id', currentUser);
+  if (!pickedFile.contains('asset')) {
+    ParseFileBase? parseFile;
+    parseFile = ParseFile(File(pickedFile));
+    await parseFile.save();
+    newMedObj.set('Image', parseFile);
+  }
+
   return await newMedObj.save();
 }
 

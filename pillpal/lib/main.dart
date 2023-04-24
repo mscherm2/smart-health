@@ -1,17 +1,21 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import 'package:pillpal/services/about_med_service.dart';
 
 import 'authentication/LoginPage.dart';
 import 'authentication/UserPage.dart';
-import 'components/MyHomePage.dart';
+import 'package:camera/camera.dart';
+
+var cameras = [];
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
+  // get list of the available cameras
+  cameras = await availableCameras();
 
   final keyApplicationId = 'LpMPZJZ7AXwu5KvzLgMIdZH1C0v5UcUgxuDZfiob';
   final keyClientKey = 'lO4WnUFbxnbwVdC4rCY9m8dKF01uax8rirzQUZh1';
@@ -401,6 +405,8 @@ class _AppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        // TODO: font not working
+        fontFamily: 'Poppins',
       ),
     );
   }

@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../components/MyAppState.dart';
 import '../components/MyHomePage.dart';
-import '../main.dart';
 
 class UserPage extends StatelessWidget {
   ParseUser? currentUser;
