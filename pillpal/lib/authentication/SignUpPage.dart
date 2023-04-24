@@ -32,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('title').tr(),
+          title: const Text('signup').tr(),
         ),
         body: Center(
           child: SingleChildScrollView(

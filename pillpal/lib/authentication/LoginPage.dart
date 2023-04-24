@@ -222,7 +222,7 @@ class _LoginPageState extends State<LoginPage> {
                   NotificationController.scheduleNewNotification(
                       userMed.get("objectId"),
                       userMed.get("Name"),
-                      "Time to take your " + userMed.get("Name") + "!",
+                      'notificationprompt'.tr(args: [userMed.get("Name")]),
                       userMed.get("Desc"),
                       notificationTimes[0]);
 

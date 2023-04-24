@@ -52,15 +52,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
                     icon: Icon(Icons.medication),
-                    label: 'Meds',
+                    label: 'navbarmeds'.tr(),
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.calendar_month_outlined),
-                    label: 'Calendar',
+                    label: 'navbarcal'.tr(),
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.person),
-                    label: 'Profile',
+                    label: 'navbarprofile'.tr(),
                   ),
                 ],
                 currentIndex: selectedIndex,

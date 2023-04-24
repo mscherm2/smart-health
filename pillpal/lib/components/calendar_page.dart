@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'cal_utils.dart';
-import 'package:provider/provider.dart';
 
 class CalendarPage extends StatefulWidget {
   @override

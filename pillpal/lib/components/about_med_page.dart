@@ -77,7 +77,7 @@ class AboutMedPage extends StatelessWidget {
                             );
                           },
                           icon: Icon(Icons.add),
-                          label: Text('Add a Medication', style: TextStyle(fontSize: 20))
+                          label: Text('addamedication', style: TextStyle(fontSize: 20)).tr()
                       )
                     ],
               );

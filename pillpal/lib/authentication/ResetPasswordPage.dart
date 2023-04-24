@@ -54,7 +54,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     if (parseResponse.success) {
       Message.showSuccess(
           context: context,
-          message: 'Password reset instructions have been sent to email!',
+          message: 'passwordreset'.tr(),
           onPressed: () {
             Navigator.of(context).pop();
           });
