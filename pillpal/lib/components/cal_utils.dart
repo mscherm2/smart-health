@@ -47,8 +47,6 @@ Future<void> generateEvents() async {
 
   List<NotificationModel> currEvents = await AwesomeNotifications().listScheduledNotifications();
 
-  print(currEvents.length);
-
   if (currEvents.length != pastLength) {
     myEvents = HashMap();
     print("HEY YA");
@@ -58,8 +56,6 @@ Future<void> generateEvents() async {
     });
     pastLength = currEvents.length;
   }
-
-  print(myEvents);
 
 }
 

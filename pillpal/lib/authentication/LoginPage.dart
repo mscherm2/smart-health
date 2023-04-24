@@ -1,7 +1,10 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
+import '../main.dart';
+import '../services/about_med_service.dart';
 import '../utils/message.dart';
 import 'ResetPasswordPage.dart';
 import 'SignUpPage.dart';
@@ -144,6 +147,106 @@ class _LoginPageState extends State<LoginPage> {
     var response = await user.login();
 
     if (response.success) {
+      ParseUser? currentUser = await ParseUser.currentUser() as ParseUser?;
+      if (currentUser != null) {
+        //Checks whether the user's session token is valid
+        final ParseResponse? parseResponse =
+        await ParseUser.getCurrentUserFromServer(currentUser.sessionToken!);
+
+        if (parseResponse?.success == null || !parseResponse!.success) {
+          //Invalid session. Logout
+          await currentUser.logout();
+        } else {
+          var userNotifications =
+          await AwesomeNotifications().listScheduledNotifications();
+
+          if (userNotifications.isEmpty) {
+
+            var userMeds = await getMedByUserID(currentUser.objectId);
+
+            for (ParseObject userMed in userMeds) {
+              var doseCount = userMed.get("doseCount");
+              var amt = userMed.get("amt");
+              List<DateTime> notificationTimes = userMed.get("Time").cast<
+                  DateTime>();
+              List<dynamic> controllerDays = userMed.get("days");
+
+              var weekdayInts = [];
+              for (var day in controllerDays) {
+                switch (day.toString()) {
+                  case "Mon":
+                    {
+                      weekdayInts.add(1);
+                    }
+                    break;
+                  case "Tue":
+                    {
+                      weekdayInts.add(2);
+                    }
+                    break;
+                  case "Wed":
+                    {
+                      weekdayInts.add(3);
+                    }
+                    break;
+                  case "Thu":
+                    {
+                      weekdayInts.add(4);
+                    }
+                    break;
+                  case "Fri":
+                    {
+                      weekdayInts.add(5);
+                    }
+                    break;
+                  case "Sat":
+                    {
+                      weekdayInts.add(6);
+                    }
+                    break;
+                  case "Sun":
+                    {
+                      weekdayInts.add(7);
+                    }
+                    break;
+                }
+              }
+
+              while (!weekdayInts.contains(notificationTimes[0].weekday)) {
+                notificationTimes.add(notificationTimes[0].add(Duration(days: 1)));
+                notificationTimes.removeAt(0);
+              }
+
+              while (notificationTimes.isNotEmpty) {
+                if (DateTime.now().compareTo(notificationTimes[0]) < 0) {
+                  NotificationController.scheduleNewNotification(
+                      userMed.get("objectId"),
+                      userMed.get("Name"),
+                      "Time to take your " + userMed.get("Name") + "!",
+                      userMed.get("Desc"),
+                      notificationTimes[0]);
+
+                  doseCount -= amt;
+
+                  if (doseCount <= 0) {
+                    break;
+                  }
+                }
+
+                notificationTimes.add(notificationTimes[0].add(Duration(days: 1)));
+                notificationTimes.removeAt(0);
+
+                while (!weekdayInts.contains(notificationTimes[0].weekday)) {
+                  notificationTimes.add(
+                      notificationTimes[0].add(Duration(days: 1)));
+                  notificationTimes.removeAt(0);
+                }
+              }
+            }
+          }
+        }
+      }
+
       navigateToUser();
     } else {
       Message.showError(context: context, message: response.error!.message);

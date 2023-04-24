@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -14,6 +15,8 @@ class UserInfoPage extends StatelessWidget {
         ParseUser? currentUser = await getUser();
         var response = await currentUser!.logout();
         if (response.success) {
+          await AwesomeNotifications().cancelAll();
+
           Message.showSuccess(
               context: context,
               message: 'logoutmsg'.tr(),
