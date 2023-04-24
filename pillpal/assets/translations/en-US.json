@@ -46,5 +46,33 @@
 
   "notificationprompt": "It's time to take your {}!",
   "medsuccess": "Yes, I took my meds!",
-  "remindhour": "Remind me in 1 hour!"
+  "remindhour": "Remind me in 1 hour!",
+
+  "addamedication": "Add a Medication",
+  "medroutetitle": "Add a New Medication",
+  "passwordreset": "Password reset instructions have been sent to email!",
+
+  "medroutepicture": "Add a picture",
+  "medroutename": "Medication Name",
+  "medroutedesc": "Description",
+  "medroutedaysofweek": "When to Take: Select days of week",
+  "medroutetimesaday": "How many times a day?",
+  "medroutetime": "Time {}:",
+  "medrouteamt": "Amount to Take at a Time?",
+  "medroutedosecnt": "How many doses do you have to start with?",
+  "medroutesnackbar": "Medication added!",
+  "requiredfield": "This field is required",
+  "submit": "Submit",
+  "goback": "Go back!",
+
+  "takeapicture": "Take a Picture",
+  "usethispicture": "Use This Picture",
+
+  "navbarmeds": "Meds",
+  "navbarcal": "Calendar",
+  "navbarprofile": "Profile"
+
+
+
+
 }

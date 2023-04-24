@@ -46,6 +46,29 @@
 
   "notificationprompt": "¡Es hora de tomar {}!",
   "medsuccess": "¡Sí, tomé mis medicamentos!",
-  "remindhour": "¡Recuérdamelo en 1 hora!\"!"
+  "remindhour": "¡Recuérdamelo en 1 hora!\"!",
 
+  "addamedication": "Agregar un Medicamento",
+  "medroutetitle": "Agregar un Nuevo Medicamento",
+  "passwordreset": "¡Las instrucciones para restablecer la contraseña se han enviado al correo electrónico!",
+
+  "medroutepicture": "Añadir una Imagen",
+  "medroutename": "Nombre del Medicamento",
+  "medroutedesc": "Descripción",
+  "medroutedaysofweek": "Cuándo Tomar: Seleccionar Días de la Semana",
+  "medroutetimesaday": "¿Cuántas Veces al Día?",
+  "medroutetime": "Tiempo {}:",
+  "medrouteamt": "¿Cantidad a tomar a la vez?",
+  "medroutedosecnt": "¿Con cuántas dosis hay que empezar?",
+  "medroutesnackbar": "¡Medicamento añadido!",
+  "requiredfield": "Este campo es obligatorio",
+  "submit": "Entregar",
+  "goback": "¡Regresa!",
+
+  "takeapicture": "Toma Una Foto",
+  "usethispicture": "Usa Esta Foto",
+
+  "navbarmeds": "Meds",
+  "navbarcal": "Calendario",
+  "navbarprofile": "Perfil"
 }

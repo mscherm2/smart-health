@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:camera/camera.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'add_med_route.dart';
@@ -47,7 +48,7 @@ class CameraScreenState extends State<CameraScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Take a picture')),
+      appBar: AppBar(title: Text('takeapicture').tr()),
       // You must wait until the controller is initialized before displaying the
       // camera preview. Use a FutureBuilder to display a loading spinner until the
       // controller has finished initializing.
@@ -108,7 +109,7 @@ class DisplayPictureScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Display the Picture')),
+      appBar: AppBar(title: Text('takeapicture').tr()),
       // The image is stored as a file on the device. Use the `Image.file`
       // constructor with the given path to display the image.
       body: Column(
@@ -125,7 +126,7 @@ class DisplayPictureScreen extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => AddMedRoute(pillImagePath: imagePath)),
                     );
                   },
-                  child: Text("Use This picture"),
+                  child: Text("usethispicture").tr(),
                 )
               ],
             )

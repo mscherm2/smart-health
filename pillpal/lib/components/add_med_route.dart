@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
@@ -39,7 +40,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
       "Mon",
     ),
     DayInWeek(
-        "Tue",
+      "Tue",
     ),
     DayInWeek(
       "Wed",
@@ -62,7 +63,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
-        title: const Text('Add a New Medication'),
+        title: const Text('medroutetitle').tr(),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -87,7 +88,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                       MaterialPageRoute(builder: (context) => CameraScreen(camera: firstCamera,)),
                                     );
                                   },
-                                  child: Text("Add a picture", style: TextStyle(fontSize: 20)),
+                                  child: Text("medroutepicture", style: TextStyle(fontSize: 20)).tr(),
                                 )
                               ],
                             )
@@ -98,14 +99,14 @@ class _AddMedRouteState extends State<AddMedRoute> {
                             controller: controllerName,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'Medication Name',
+                              labelText: 'medroutename'.tr(),
                               filled: true,
                               fillColor: Colors.white,
                               labelStyle: TextStyle(fontSize: 20)
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'This field is required';
+                                return 'requiredfield'.tr();
                               }
                               return null;
                             },
@@ -117,20 +118,20 @@ class _AddMedRouteState extends State<AddMedRoute> {
                             controller: controllerDescription,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'Description',
+                              labelText: 'medroutedesc'.tr(),
                               filled: true,
                               fillColor: Colors.white,
                               labelStyle: TextStyle(fontSize: 20)
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'This field is required';
+                                return 'requiredfield'.tr();
                               }
                               return null;
                             },
                           ),
                         ),
-                        Text('When to Take: Select days of week', style: TextStyle(fontSize: 20),),
+                        Text('medroutedaysofweek', style: TextStyle(fontSize: 20),).tr(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SelectWeekDays(
@@ -169,7 +170,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'This field is required';
+                                return 'requiredfield'.tr();
                               }
                               return null;
                             },
@@ -195,7 +196,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                         // rest of time pickers if applicable
                         if (controllerHowManyTimes.text.isNotEmpty)...[
                           for(int x = 2; x <= int.parse(controllerHowManyTimes.text); x++)...[
-                            Text('Time $x:', style: TextStyle(fontSize: 20)),
+                            Text('medroutetime', style: TextStyle(fontSize: 20)).tr(args: [x.toString()]),
                             TimePickerSpinner(
                               spacing: 20,
                               minutesInterval: 15,
@@ -219,14 +220,14 @@ class _AddMedRouteState extends State<AddMedRoute> {
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'Amount to Take at a Time?',
+                              labelText: 'medrouteamt'.tr(),
                               filled: true,
                               fillColor: Colors.white,
                               labelStyle: TextStyle(fontSize: 20)
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'This field is required';
+                                return 'requiredfield'.tr();
                               }
                               return null;
                             },
@@ -239,14 +240,14 @@ class _AddMedRouteState extends State<AddMedRoute> {
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              labelText: 'How many doses do you have to start with?',
+                              labelText: 'medroutedosecnt'.tr(),
                               filled: true,
                               fillColor: Colors.white,
                               labelStyle: TextStyle(fontSize: 16)
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'This field is required';
+                                return 'requiredfield'.tr();
                               }
                               return null;
                             },
@@ -279,7 +280,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
 
                                     // display message to u45:58.000}ser that it worked
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Medication added!')),
+                                      SnackBar(content: Text('medroutesnackbar').tr()),
                                     );
 
                                     var doseCount = int.parse(controllerDoses.text);
@@ -331,7 +332,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                             NotificationController.scheduleNewNotification(
                                               medResponse.result["objectId"],
                                               medResponse.result["Name"],
-                                              "Time to take your " + medResponse.result["Name"] + "!",
+                                              'notificationprompt'.tr(),
                                               medResponse.result["Desc"],
                                               notificationTimes[0]
                                             );
@@ -360,7 +361,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                         MaterialPageRoute(builder: (context) => MyHomePage()),
                                     );
                                 },
-                                child: const Text('Submit', style: TextStyle(fontSize: 20)),
+                                child: Text('submit', style: TextStyle(fontSize: 20)).tr(),
                               ),
                               SizedBox(width: 20),
                               ElevatedButton(
@@ -370,7 +371,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                       MaterialPageRoute(builder: (context) => MyHomePage()),
                                   );
                                 },
-                                child: const Text('Go back!', style: TextStyle(fontSize: 20)),
+                                child: Text('goback', style: TextStyle(fontSize: 20)).tr(),
                               ),
                             ],
                           ),

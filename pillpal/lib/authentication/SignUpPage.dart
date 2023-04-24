@@ -32,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('title', style: TextStyle(fontSize: 24)).tr(),
+          title: const Text('signup', style: TextStyle(fontSize: 24)).tr(),
         ),
         body: Center(
           child: SingleChildScrollView(
