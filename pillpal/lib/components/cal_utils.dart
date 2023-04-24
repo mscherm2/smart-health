@@ -4,6 +4,7 @@
 import 'dart:collection';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 /// Example event class.
 class Event {

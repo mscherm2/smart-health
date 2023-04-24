@@ -5,7 +5,6 @@ import 'package:day_picker/day_picker.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import '../main.dart';
 import '../services/about_med_service.dart';
-import '../main.dart';
 import 'MyHomePage.dart';
 import 'cameraScreen.dart';
 
@@ -354,7 +353,6 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                         context,
                                         MaterialPageRoute(builder: (context) => MyHomePage()),
                                     );
-                                  }
                                 },
                                 child: const Text('Submit'),
                               ),
