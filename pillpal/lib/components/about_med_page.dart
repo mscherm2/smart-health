@@ -19,8 +19,10 @@ class AboutMedPage extends StatelessWidget {
               return Column(
                     children: [
                       SizedBox(height: 20),
-                      Text('aboutmymedsintro', style: TextStyle(fontSize: 20, fontFamily: 'Poppins')).tr(args: [snapshot.data?[0].get('username')]),
-                      SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('aboutmymedsintro', style: TextStyle(fontSize: 20, fontFamily: 'Poppins')).tr(args: [snapshot.data?[0].get('username')]),
+                      ),
                       Expanded(
                         child: ListView.separated(
                           padding: const EdgeInsets.all(8),

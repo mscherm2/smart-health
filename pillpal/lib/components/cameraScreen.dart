@@ -94,7 +94,7 @@ class CameraScreenState extends State<CameraScreen> {
             print(e);
           }
         },
-        child: const Icon(Icons.camera_alt),
+        child: const Icon(Icons.camera_alt, size: 40),
       ),
     );
   }

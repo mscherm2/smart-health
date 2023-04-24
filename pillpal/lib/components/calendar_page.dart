@@ -132,7 +132,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     ),
                     child: ListTile(
                       onTap: () => print('${value[index]}'),
-                      title: Text('${value[index]}'),
+                      title: Text('${value[index]}', style: TextStyle(fontSize: 20)),
                     ),
                   );
                 },

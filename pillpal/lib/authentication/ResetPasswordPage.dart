@@ -16,7 +16,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('resetpassword').tr(),
+          title: Text('resetpassword', style: TextStyle(fontSize: 24)).tr(),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(8),
@@ -31,7 +31,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
-                    labelText: 'email'.tr()),
+                    labelText: 'email'.tr(),
+                    labelStyle: TextStyle(fontSize: 20)
+                ),
               ),
               SizedBox(
                 height: 8,
@@ -39,7 +41,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               Container(
                 height: 50,
                 child: ElevatedButton(
-                  child: const Text('resetpassword').tr(),
+                  child: const Text('resetpassword', style: TextStyle(fontSize: 20)).tr(),
                   onPressed: () => doUserResetPassword(),
                 ),
               )
