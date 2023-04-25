@@ -45,7 +45,7 @@
   "pharmacyzip": "Pharmacy Zip Code",
 
   "notificationprompt": "It's time to take your {}!",
-  "medsuccess": "Yes, I took my meds!",
+  "med_success": "Yes, I took my meds!",
   "remindhour": "Remind me in 1 hour!",
 
   "addamedication": "Add a Medication",

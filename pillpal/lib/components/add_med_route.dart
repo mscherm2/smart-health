@@ -332,7 +332,7 @@ class _AddMedRouteState extends State<AddMedRoute> {
                                             NotificationController.scheduleNewNotification(
                                               medResponse.result["objectId"],
                                               medResponse.result["Name"],
-                                              'notificationprompt'.tr(),
+                                              'notificationprompt'.tr(args: [medResponse.result["Name"]]),
                                               medResponse.result["Desc"],
                                               notificationTimes[0]
                                             );
