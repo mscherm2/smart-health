@@ -21,7 +21,7 @@ class AboutMedPage extends StatelessWidget {
                       SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text('aboutmymedsintro', style: TextStyle(fontSize: 20, fontFamily: 'Poppins')).tr(args: [snapshot.data?[0].get('username')]),
+                        child: Text('aboutmymedsintro', style: TextStyle(fontSize: 20)).tr(args: [snapshot.data?[0].get('username')]),
                       ),
                       Expanded(
                         child: ListView.separated(

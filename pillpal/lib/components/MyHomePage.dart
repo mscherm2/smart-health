@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, constraints) {
           return Scaffold(
               appBar: AppBar(
-                title: Text('title', style: TextStyle(color: Colors.white),).tr(),
+                title: Text('title', style: TextStyle(color: Colors.white, fontFamily: 'Poppins'),).tr(),
                 centerTitle: true,
                 backgroundColor: Color(0xff020887),
                 titleTextStyle: TextStyle(fontSize: 30),
