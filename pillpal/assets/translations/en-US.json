@@ -1,0 +1,78 @@
+{
+  "title": "PillPal",
+  "username": "Username",
+  "password": "Password",
+  "login": "Login",
+  "signup": "Sign Up",
+  "resetpassword": "Reset Password",
+  "userregistration": "User Registration",
+  "email": "E-mail",
+  "successful": "User was successfully created!",
+  "success": "Success!",
+  "ok": "OK",
+  "error": "Error!",
+  "nowidget": "no widget for {}",
+  "aboutmeds": "About Meds",
+  "calendar": "Calendar",
+  "myinfo": "My Info",
+
+  "logoutmsg": "User was successfully logged out!",
+  "logouterror": "Logout Error! Please try again later.",
+  "userinfo": "Username: {}\nEmail: {}",
+  "userinfodoctor": "Doctor Information:\nName: {}\nEmail: {}\nPhone: {}\nOther: {}",
+  "userinfopharmacy": "Pharmacy Information:\nName: {}\n{}\n{}, {} {}\n{}",
+  "changelanguage": "Change Language",
+  "logout": "Logout",
+  "hello": "Hello",
+  "english": "English",
+  "spanish": "Spanish",
+
+  "aboutmymedications": "About My Medications",
+  "aboutmymedsintro": "Hello, {}! Use this page to see your medication details or add a new one!",
+
+  "medication": "Description: {}\nDays: {}\nTime: {}\nAmount: {}\nDoses Remaining: {}",
+
+  "doctorname": "Doctor Name",
+  "doctorphone": "Doctor Phone",
+  "doctoremail": "Doctor Email",
+  "doctorotherinfo": "Doctor Other Info",
+
+  "pharmacyname": "Pharmacy Name",
+  "pharmacyphone": "Pharmacy Phone",
+  "pharmacyaddr": "Pharmacy Street Address",
+  "pharmacycity": "Pharmacy City",
+  "pharmacystate": "Pharmacy State",
+  "pharmacyzip": "Pharmacy Zip Code",
+
+  "notificationprompt": "It's time to take your {}!",
+  "med_success": "Yes, I took my meds!",
+  "remindhour": "Remind me in 1 hour!",
+
+  "addamedication": "Add a Medication",
+  "medroutetitle": "Add a New Medication",
+  "passwordreset": "Password reset instructions have been sent to email!",
+
+  "medroutepicture": "Add a picture",
+  "medroutename": "Medication Name",
+  "medroutedesc": "Description",
+  "medroutedaysofweek": "When to Take: Select days of week",
+  "medroutetimesaday": "How many times a day?",
+  "medroutetime": "Time {}:",
+  "medrouteamt": "Amount to Take at a Time?",
+  "medroutedosecnt": "How many doses do you have to start with?",
+  "medroutesnackbar": "Medication added!",
+  "requiredfield": "This field is required",
+  "submit": "Submit",
+  "goback": "Go back!",
+
+  "takeapicture": "Take a Picture",
+  "usethispicture": "Use This Picture",
+
+  "navbarmeds": "Meds",
+  "navbarcal": "Calendar",
+  "navbarprofile": "Profile"
+
+
+
+
+}

@@ -1,11 +1,11 @@
 {
-    "name": "pillpal",
-    "short_name": "pillpal",
+    "name": "awesome_notifications_example",
+    "short_name": "awesome_notifications_example",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "CSE 40816 - Smart Health - Connors, Greed, Schermerhorn",
+    "description": "Demonstrates how to use the awesome_notifications plugin.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/pillpal/pillpal.iml" filepath="$PROJECT_DIR$/pillpal/pillpal.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pillpal/android/pillpal_android.iml" filepath="$PROJECT_DIR$/pillpal/android/pillpal_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/smart-health.iml" filepath="$PROJECT_DIR$/.idea/smart-health.iml" />
     </modules>
   </component>
 </project>
